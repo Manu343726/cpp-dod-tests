@@ -8,16 +8,19 @@ Create a `build/` directory for out-of-source build, then run cmake configure an
 
 ``` bash
 Manu @ joaquin_dod $ mkdir build && cd build
-Manu @ joaquin_dod $ cmake .. -G "Visual Studio 14" -DCMAKE_BUILD_TYPE=Release
-Manu @ joaquin_dod $ cmake --build .
+Manu @ joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DCPU_MODEL="My CPU"
+Manu @ joaquin_dod/build $ cmake --build . --config Release
 ```
+
+The `CPU_MODEL` option is mandatory, CPU model information is used for results organization.
+Also, **don't forget to enable Release mode when building** (`--enable Release`), Debug mode is used by default.
 
 ### Assembly listings
 
 The cmake script includes a `GENERATE_ASSEMBLY` option that, in addition to building the example, generates an assembly listing file using the same build settigns. Just enable it when invoking cmake:
 
 ``` bash
-Manu : joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON -DCMAKE_BUILD_TYPE=Release
+Manu : joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="..."
 ```
 
 ### Run and log timings to a file
