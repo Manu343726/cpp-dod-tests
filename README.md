@@ -13,7 +13,7 @@ Manu @ joaquin_dod/build $ cmake --build . --config Release
 ```
 
 The `CPU_MODEL` option is mandatory, CPU model information is used for results organization.
-Also, **don't forget to enable Release mode when building** (`--enable Release`), Debug mode is used by default.
+Also, **don't forget to enable Release mode when building** (`--config Release`), Debug mode is used by default.
 
 ### Assembly listings
 
