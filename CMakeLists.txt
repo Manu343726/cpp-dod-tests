@@ -7,10 +7,13 @@ option(GENERATE_ASSEMBLY "Generate assembly listings instead of executable" OFF)
 if(NOT CPU_MODEL)
     message(FATAL_ERROR "You must specify your CPU model. We are still working on a portable command to handle this automatically. Thanks!")
 endif()
+string(REGEX REPLACE " " "-" CPU_MODEL "${CPU_MODEL}")
 
 compiler_version(CXX_COMPILER_VERSION)
 environment(ENVIRONMENT)
 set(OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/results/${CPU_MODEL}/${CMAKE_SYSTEM}/${ENVIRONMENT}-${CMAKE_CXX_COMPILER_ID}-${CXX_COMPILER_VERSION}")
+set_output_directory(${OUTPUT_PATH})
+
 
 if(NOT (EXISTS OUTPUT_PATH))
     file(MAKE_DIRECTORY ${OUTPUT_PATH})
@@ -50,25 +53,23 @@ else()
     endif()
 endif()
 
-#"${CMAKE_BINARY_DIR}/CMakeFiles/${CMAKE_PROJECT_NAME}.dir/${SOURCE_NAME}.cpp.s"
-
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE ${STD_FLAGS} ${OPT_FLAGS} ${SIMD_FLAGS} ${ASMGEN_FLAGS})
 
 # External dependencies (Boost, etc)
 if(WIN32)
     set(INCLUDE_DIRS C:/MinGW/include)
 elseif(CYGWIN)
-    set(INCLUDE_DIRS "/cygdrive/c/MinGW/include")
+    set(INCLUDE_DIRS /cygdrive/c/MinGW/include)
 elseif(UNIX)
     set(INCLUDE_DIRS usr/local/include)
 endif()
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "${INCLUDE_DIRS}")
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${INCLUDE_DIRS})
 
 if(WIN32)
     add_custom_target(run COMMAND ${CMAKE_PROJECT_NAME}.exe >> output.txt
                       WORKING_DIRECTORY ${OUTPUT_PATH})
 else()
     add_custom_target(run COMMAND ./${CMAKE_PROJECT_NAME} | tee output.txt
-                  WORKING_DIRECTORY ${OUTPUT_PATH})
+                      WORKING_DIRECTORY ${OUTPUT_PATH})
 endif()
