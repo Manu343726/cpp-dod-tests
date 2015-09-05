@@ -25,9 +25,7 @@ if(NOT (EXISTS OUTPUT_PATH))
 endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH})
 
-### SOURCE FILES INPUT ###
-set(SOURCE_NAMES dod_perfv1 dod_perfv2)
-## ## ## ## ## ## ## ## ## 
+include(sources.cmake)
 
 foreach(name ${SOURCE_NAMES})
     message(STATUS "Setting up ${name}...")
@@ -112,13 +110,13 @@ foreach(name ${SOURCE_NAMES})
     if(WIN32)
         add_custom_target(run_${name}
                           COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
-                          COMMAND ${CMAKE_PROJECT_NAME}.exe >> ${OUTPUT_FILE}
+                          COMMAND ${target}.exe >> ${OUTPUT_FILE}
                           COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
                           WORKING_DIRECTORY ${OUTPUT_PATH})
     else()
         add_custom_target(run_${name}
                           COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
-                          COMMAND ./${CMAKE_PROJECT_NAME} | tee ${OUTPUT_FILE}
+                          COMMAND ./${target} | tee ${OUTPUT_FILE}
                           COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
                           WORKING_DIRECTORY ${OUTPUT_PATH})
     endif()
@@ -126,50 +124,56 @@ foreach(name ${SOURCE_NAMES})
     set(RUN_TARGETS "${RUN_TARGETS} ${RUN_TARGET}")
 endforeach()
 
-# Custom target to do all the work with a simple command:
-add_custom_target(run_all COMMAND ${CMAKE_COMMAND} -E echo \">>>> Running all variants\" WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+include(variants.cmake)
 
-set(common_flags "-DGENERATE_ASSEMBLY=${GENERATE_ASSEMBLY} -DCPU_MODEL=\"${CPU_MODEL}\"")
+function(generate_all_targets TARGET_NAME RUN)
+    if(RUN)
+        set(action Running)
+    else()
+        set(action Building)
+    endif()
 
-if(WIN32)
-    list(APPEND VARIANTS "-G \"Visual Studio 14\" -DCMAKE_BUILD_TYPE=Release")
-    list(APPEND VARIANTS "-G \"Visual Studio 14\" -DCMAKE_BUILD_TYPE=Debug")
-    list(APPEND VARIANTS "-G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Release")
-    list(APPEND VARIANTS "-G \"Unix Makefiles\" -DCMAKE_BUILD_TYPE=Debug")
-elseif(CYGWIN)
-    # Nothing
-elseif(UNIX)
-    list(APPEND VARIANTS "-G \"Unix Makefiles\" -DCMAKE_CXX_COMPILER=$(which g++) -DCMAKE_BUILD_TYPE=Release")
-    list(APPEND VARIANTS "-G \"Unix Makefiles\" -DCMAKE_CXX_COMPILER=$(which g++) -DCMAKE_BUILD_TYPE=Debug")
-    list(APPEND VARIANTS "-G \"Unix Makefiles\" -DCMAKE_CXX_COMPILER=$(which clang++) -DCMAKE_BUILD_TYPE=Release")
-    list(APPEND VARIANTS "-G \"Unix Makefiles\" -DCMAKE_CXX_COMPILER=$(which clang++) -DCMAKE_BUILD_TYPE=Debug")
-endif()
-list(LENGTH VARIANTS variants_count)
-math(EXPR end "${variants_count} - 1")
+    # Custom target to do all the work with a simple command:
+    add_custom_target(${TARGET_NAME} COMMAND ${CMAKE_COMMAND} -E echo \">>>> ${action} all variants\" WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
-foreach(i RANGE ${end})
-    list(GET VARIANTS ${i} variant)
-    string(REGEX REPLACE " " "-" variant_label "${variant}")
+    list(LENGTH VARIANTS variants_count)
+    math(EXPR end "${variants_count} - 1")
 
-    add_custom_command(TARGET run_all
-                       COMMAND ${CMAKE_COMMAND} -E echo "Setting up '${variant}'"
-                       COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/${i}
-                       COMMAND ${CMAKE_COMMAND} -E sleep 1
-                       WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+    foreach(i RANGE ${end})
+        list(GET VARIANTS ${i} variant)
+        string(REGEX REPLACE " " "-" variant_label "${variant}")
 
-    add_custom_command(TARGET run_all
-                       COMMAND ${CMAKE_COMMAND} -E echo "Building variant: '${variant}'"
-                       COMMAND ${CMAKE_COMMAND} ../.. ${variant} ${common_flags}
-                       COMMAND ${CMAKE_COMMAND} --build .
-                       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${i})
+        add_custom_command(TARGET ${TARGET_NAME}
+                           COMMAND ${CMAKE_COMMAND} -E echo "Setting up '${variant}'"
+                           COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/${i}
+                           COMMAND ${CMAKE_COMMAND} -E sleep 1
+                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
-    foreach(target ${TARGETS})
-        add_custom_command(TARGET run_all
-                           COMMAND ${CMAKE_COMMAND} -E echo "Running target ${target}"
-                           COMMAND ${CMAKE_COMMAND} --build . --target run_${target}
+        add_custom_command(TARGET ${TARGET_NAME}
+                           COMMAND ${CMAKE_COMMAND} -E echo "Building variant: '${variant}'"
+                           COMMAND ${CMAKE_COMMAND} ../.. ${variant} ${COMMON_VARIANT_FLAGS}
+                           COMMAND ${CMAKE_COMMAND} --build .
                            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${i})
+
+        if(RUN)
+            foreach(target ${TARGETS})
+                add_custom_command(TARGET ${TARGET_NAME}
+                                   COMMAND ${CMAKE_COMMAND} -E echo "Running target ${target}"
+                                   COMMAND ${CMAKE_COMMAND} --build . --target run_${target}
+                                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${i})
+            endforeach()
+        endif()
+
+        add_custom_command(TARGET ${TARGET_NAME}
+                           COMMAND ${CMAKE_COMMAND} -E echo "Tiding up '${variant}' working tree..."
+                           COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/${i}
+                           COMMAND ${CMAKE_COMMAND} -E sleep 1
+                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
     endforeach()
-endforeach()
+endfunction()
+
+generate_all_targets(run_all TRUE)
+generate_all_targets(build_all FALSE)
 
 string(REPLACE ";" " " SOURCE_FILES_STR "${SOURCE_FILES}")
 string(REPLACE ";" " " ASSEMBLY_LISTING_FILES_STR "${ASSEMBLY_LISTING_FILES}")

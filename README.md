@@ -4,9 +4,9 @@ The project contains a `CMakeLists.txt` file with portable build and run setting
 
 ### Targets
 
-The script looks at the `SOURCE_NAMES` list defined in the `CMakeLists.txt` to figure out what `.cpp` files should be configured and built. For each source `SOURCE` specified there, a cmake executable target named `SOURCE` is generated. This target uses `[PROJECT_ROOT_DIR]/[SOURCE].cpp` as unique source for the executable. Also each one of this targets has its own assembly listings file, timing output file, etc.
+The script looks at the `SOURCE_NAMES` list defined in the `sources.cmake` file to figure out what `.cpp` files should be configured and built. For each source `SOURCE` specified there, a cmake executable target named `SOURCE` is generated. This target uses `[PROJECT_ROOT_DIR]/[SOURCE].cpp` as unique source for the executable. Also each one of this targets has its own assembly listings file, timing output file, etc.
 
-A possible value for the `SOURCE_NAMES` list coudl be:
+A possible value for the `SOURCE_NAMES` list could be:
 
 ``` cmake
 set(SOURCE_NAMES dod_perfv1 dod_perfv2)
@@ -42,9 +42,16 @@ A set of custom targets named `run_[TARGET_NAME]` was added to run and store tim
 Manu @ joaquin_dod/build $ cmake --build . --target run_dod_perfv1 # Or "make run_dod_perfv1" when using makefiles generator
 ```
 
-Finally a `run_all` target is provided to configure and run a set of specific variants (Visual Studio generator vs Unix Makefiles for MinGW GCC, Debug vs Release, etc) defined as a `VARIANTS` cmake list in the `CMakeLists.txt` file. This makes running tests in multiple machines pretty straightforward:
+Finally a `run_all` target is provided to configure and run a set of specific variants (Visual Studio generator vs Unix Makefiles for MinGW GCC, Debug vs Release, etc) defined as a `VARIANTS` cmake list in the `variants.cmake` file. This makes running tests in multiple machines pretty straightforward:
 
 ``` bash
 Manu @ joaquin_dod/build $ cmake .. -G "Unix Makefiles" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="My CPU"
 Manu @ joaquin_dod/build $ make run_all
+```
+
+*Also there's a `build_all` target which does the same but without running the tests, only building them on all variants:*
+
+``` bash
+Manu @ joaquin_dod/build $ cmake .. -G "Unix Makefiles" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="My CPU"
+Manu @ joaquin_dod/build $ make build_all
 ```
