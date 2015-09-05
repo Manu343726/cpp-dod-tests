@@ -2,6 +2,16 @@
 
 The project contains a `CMakeLists.txt` file with portable build and run settings. Just run cmake with the generator and compiler you want to test with. All output files are written to a hierarchical `results/[CPU-MODEL]/[SYSTEM]/[ENVIRONMENT-COMPILER]/[BUILD_TYPE]` directory.
 
+### Targets
+
+The script looks at the `SOURCE_NAMES` list defined in the `CMakeLists.txt` to figure out what `.cpp` files should be configured and built. For each source `SOURCE` specified there, a cmake executable target named `SOURCE` is generated. This target uses `[PROJECT_ROOT_DIR]/[SOURCE].cpp` as unique source for the executable. Also each one of this targets has its own assembly listings file, timing output file, etc.
+
+A possible value for the `SOURCE_NAMES` list coudl be:
+
+``` cmake
+set(SOURCE_NAMES dod_perfv1 dod_perfv2)
+```
+
 ### Configure and build
 
 Create a `build/` directory for out-of-source build, then run cmake configure and build steps:
@@ -26,10 +36,10 @@ Manu : joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON
 
 ### Run and log timings to a file
 
-A custom target named `run` was added to run and store timings in an easy way. Results are written to a `output.txt` file in the results directory:
+A set of custom targets named `run_[TARGET_NAME]` was added to run and store timings in an easy way. Results are written to a `output_[TARGET_NAME].txt` file in the results directory:
 
 ``` bash
-Manu @ joaquin_dod/build $ cmake --build . --target=run # Or "make run" when using makefiles generator
+Manu @ joaquin_dod/build $ cmake --build . --target run_dod_perfv1 # Or "make run_dod_perfv1" when using makefiles generator
 ```
 
 Finally a `run_all` target is provided to configure and run a set of specific variants (Visual Studio generator vs Unix Makefiles for MinGW GCC, Debug vs Release, etc) defined as a `VARIANTS` cmake list in the `CMakeLists.txt` file. This makes running tests in multiple machines pretty straightforward:

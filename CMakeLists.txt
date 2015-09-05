@@ -25,89 +25,106 @@ if(NOT (EXISTS OUTPUT_PATH))
 endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH})
 
-set(SOURCE_NAME dod_perf)
-set(SOURCE_FILES ${SOURCE_NAME}.cpp)
+### SOURCE FILES INPUT ###
+set(SOURCE_NAMES dod_perfv1 dod_perfv2)
+## ## ## ## ## ## ## ## ## 
 
-# See unique-config emulation trick bellow
-if(MSVC)
-    add_executable(${CMAKE_PROJECT_NAME} EXCLUDE_FROM_ALL ${SOURCE_FILES})
-else()
-    add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
-endif()
+foreach(name ${SOURCE_NAMES})
+    message(STATUS "Setting up ${name}...")
 
-if(MSVC)
-    set(assembly_listing_file ${SOURCE_NAME}.asm)
-else()
-    set(assembly_listing_file ${SOURCE_NAME}.s)
-endif()
+    set(SOURCE_FILE ${name}.cpp)
+    list(APPEND SOURCE_FILES ${SOURCE_FILE})
+    set(OUTPUT_FILE ${name}_output.txt)
+    list(APPEND OUTPUT_FILES ${OUTPUT_FILE})
 
-# Compiler flags
-if(MSVC)
-    # SSE2 flag ignored on 64 bit builds, it's enabled by default.
-    # See http://stackoverflow.com/questions/1067630/sse2-option-in-visual-c-x64
-    set(SIMD_FLAGS $<$<CONFIG:Release>:/arch:sse2>)
-
-    # Omit frame pointer, enable intrinsic functions
-    set(OPT_FLAGS $<$<CONFIG:Release>:/Oy /Oi>)
-
-    if(GENERATE_ASSEMBLY)
-        set(ASMGEN_FLAGS "/Fa${OUTPUT_PATH}/${assembly_listing_file}" /FA)
+    if(MSVC)
+        set(ASSEMBLY_LISTING_FILE ${name}.asm)
+    else()
+        set(ASSEMBLY_LISTING_FILE ${name}.s)
     endif()
-else()
-    set(STD_FLAGS -std=c++11)
-    set(SIMD_FLAGS $<$<CONFIG:Release>:-ftree-vectorize -msse2>)
-    set(OPT_FLAGS $<$<CONFIG:Release>:-O3 -g0 -fomit-frame-pointer>) # Frame pointer out not bcos performance but to clear listings a bit
 
-    if(GENERATE_ASSEMBLY)
-        add_custom_command(TARGET ${CMAKE_PROJECT_NAME}
-                           POST_BUILD
-                           COMMAND make ARGS ${SOURCE_NAME}.s
-                           COMMAND ${CMAKE_COMMAND} -E copy
-                               "${CMAKE_BINARY_DIR}/CMakeFiles/${CMAKE_PROJECT_NAME}.dir/${SOURCE_NAME}.cpp.s"
-                               "${OUTPUT_PATH}/${assembly_listing_file}"
-                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+    list(APPEND ASSEMBLY_LISTING_FILES ${ASSEMBLY_LISTING_FILE})
+
+    set(target ${name})
+    list(APPEND TARGETS ${target})
+
+    # See unique-config emulation trick bellow
+    if(MSVC)
+        add_executable(${target} EXCLUDE_FROM_ALL ${SOURCE_FILE})
+    else()
+        add_executable(${target} ${SOURCE_FILE})
     endif()
-endif()
 
-target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE ${STD_FLAGS} ${OPT_FLAGS} ${SIMD_FLAGS} ${ASMGEN_FLAGS})
+    # Compiler flags
+    if(MSVC)
+        # SSE2 flag ignored in 64 bit builds, it's enabled by default.
+        # See http://stackoverflow.com/questions/1067630/sse2-option-in-visual-c-x64
+        set(SIMD_FLAGS $<$<CONFIG:Release>:/arch:sse2>)
 
-# External dependencies (Boost, etc)
-if(WIN32)
-    set(INCLUDE_DIRS C:/MinGW/include)
-elseif(CYGWIN)
-    set(INCLUDE_DIRS /cygdrive/c/MinGW/include)
-elseif(UNIX)
-    set(INCLUDE_DIRS usr/local/include)
-endif()
+        # Omit frame pointer, enable intrinsic functions
+        set(OPT_FLAGS $<$<CONFIG:Release>:/Oy /Oi>)
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${INCLUDE_DIRS})
+        if(GENERATE_ASSEMBLY)
+            set(ASMGEN_FLAGS "/Fa${OUTPUT_PATH}/${ASSEMBLY_LISTING_FILE}" /FA)
+        endif()
+    else()
+        set(STD_FLAGS -std=c++11)
+        set(SIMD_FLAGS $<$<CONFIG:Release>:-ftree-vectorize -msse2>)
+        set(OPT_FLAGS $<$<CONFIG:Release>:-O3 -g0 -fomit-frame-pointer>) # Frame pointer out not bcos performance but to clear listings a bit
 
-# Workaround to make VS behave like unique-configuration generator:
-if(WIN32 AND MSVC)
-    set_target_properties(${CMANE_PROJECT_NAME}
-                          PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)
+        if(GENERATE_ASSEMBLY)
+            add_custom_command(TARGET ${target}
+                               POST_BUILD
+                               COMMAND make ARGS ${name}.s
+                               COMMAND ${CMAKE_COMMAND} -E copy
+                                   "${CMAKE_BINARY_DIR}/CMakeFiles/${target}.dir/${name}.cpp.s"
+                                   "${OUTPUT_PATH}/${ASSEMBLY_LISTING_FILE}"
+                               WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+        endif()
+    endif()
 
-    # Build target using CMAKE_BUILD_TYPE always, as unique-configuration makefiles
-    add_custom_target(build_msvc ALL
-                      COMMAND ${CMAKE_COMMAND} --build \".\" --target ${CMAKE_PROJECT_NAME} --config ${CMAKE_BUILD_TYPE}
-                      WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
-endif()
+    target_compile_options(${target} PRIVATE ${STD_FLAGS} ${OPT_FLAGS} ${SIMD_FLAGS} ${ASMGEN_FLAGS})
 
-set(run_status_message ">>>> Running ${CMAKE_PROJECT_NAME} on '${CPU_MODEL}', ${CMAKE_SYSTEM}-${ENVIRONMENT}-${CMAKE_CXX_COMPILER_ID}-${CXX_COMPILER_VERSION} (${CMAKE_BUILD_TYPE})")
-set(run_finished_message ">>>> Finished. Results in 'output.txt' file at ${OUTPUT_PATH}")
-if(WIN32)
-    add_custom_target(run
-                      COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
-                      COMMAND ${CMAKE_PROJECT_NAME}.exe >> output.txt
-                      COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
-                      WORKING_DIRECTORY ${OUTPUT_PATH})
-else()
-    add_custom_target(run
-                      COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
-                      COMMAND ./${CMAKE_PROJECT_NAME} | tee output.txt
-                      COMMAND ${CMAKE_COMMAND} -E echo "Finished. Results in 'output.txt' file at ${OUTPUT_PATH}"
-                      WORKING_DIRECTORY ${OUTPUT_PATH})
-endif()
+    # External dependencies (Boost, etc)
+    if(WIN32)
+        set(INCLUDE_DIRS C:/MinGW/include)
+    elseif(CYGWIN)
+        set(INCLUDE_DIRS /cygdrive/c/MinGW/include)
+    elseif(UNIX)
+        set(INCLUDE_DIRS usr/local/include)
+    endif()
+
+    target_include_directories(${target} PRIVATE ${INCLUDE_DIRS})
+
+    # Workaround to make VS behave like unique-configuration generator:
+    if(WIN32 AND MSVC)
+        set_target_properties(${target}
+                              PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)
+
+        # Build target using CMAKE_BUILD_TYPE always, as unique-configuration makefiles
+        add_custom_target(build_msvc_${target} ALL
+                          COMMAND ${CMAKE_COMMAND} --build \".\" --target ${target} --config ${CMAKE_BUILD_TYPE}
+                          WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+    endif()
+
+    set(run_status_message ">>>> Running ${target} target on '${CPU_MODEL}', ${CMAKE_SYSTEM}-${ENVIRONMENT}-${CMAKE_CXX_COMPILER_ID}-${CXX_COMPILER_VERSION} (${CMAKE_BUILD_TYPE})")
+    set(run_finished_message ">>>> Finished. Results in '${OUTPUT_FILE}' file at ${OUTPUT_PATH}")
+    if(WIN32)
+        add_custom_target(run_${name}
+                          COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
+                          COMMAND ${CMAKE_PROJECT_NAME}.exe >> ${OUTPUT_FILE}
+                          COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
+                          WORKING_DIRECTORY ${OUTPUT_PATH})
+    else()
+        add_custom_target(run_${name}
+                          COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
+                          COMMAND ./${CMAKE_PROJECT_NAME} | tee ${OUTPUT_FILE}
+                          COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
+                          WORKING_DIRECTORY ${OUTPUT_PATH})
+    endif()
+
+    set(RUN_TARGETS "${RUN_TARGETS} ${RUN_TARGET}")
+endforeach()
 
 # Custom target to do all the work with a simple command:
 add_custom_target(run_all COMMAND ${CMAKE_COMMAND} -E echo \">>>> Running all variants\" WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -141,19 +158,29 @@ foreach(i RANGE ${end})
                        WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
     add_custom_command(TARGET run_all
-                       COMMAND ${CMAKE_COMMAND} -E echo "Running variant: '${variant}'"
+                       COMMAND ${CMAKE_COMMAND} -E echo "Building variant: '${variant}'"
                        COMMAND ${CMAKE_COMMAND} ../.. ${variant} ${common_flags}
                        COMMAND ${CMAKE_COMMAND} --build .
-                       COMMAND ${CMAKE_COMMAND} --build . --target run
                        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${i})
+
+    foreach(target ${TARGETS})
+        add_custom_command(TARGET run_all
+                           COMMAND ${CMAKE_COMMAND} -E echo "Running target ${target}"
+                           COMMAND ${CMAKE_COMMAND} --build . --target run_${target}
+                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${i})
+    endforeach()
 endforeach()
 
-message("
+string(REPLACE ";" " " SOURCE_FILES_STR "${SOURCE_FILES}")
+string(REPLACE ";" " " ASSEMBLY_LISTING_FILES_STR "${ASSEMBLY_LISTING_FILES}")
+string(REPLACE ";" " " OUTPUT_FILES_STR "${OUTPUT_FILES}")
+
+set(INFO_MESSAGE "
 ==========================
   Configuration finished
 ==========================
 
- - Source: ${SOURCE_NAME}.cpp
+ - Sources: ${SOURCE_FILES_STR}
  - CPU model: ${CPU_MODEL}
  - System: ${CMAKE_SYSTEM_NAME}
  - Environment: ${ENVIRONMENT}
@@ -161,15 +188,22 @@ message("
  - Build type: ${CMAKE_BUILD_TYPE}
 
  Output directory: ${OUTPUT_PATH}
- Assembly output file: ${assembly_listing_file}
- Results output file: output.txt
+ Assembly output files: ${ASSEMBLY_LISTING_FILES_STR}
+ Results output files: ${OUTPUT_FILES_STR}
 
  Targets:
+")
 
-   run: Runs timings for the current configuration, stores results in results output file.
-        Invoke as: \"cmake --build . --target run\" or \"make run\" on build/ directory.
+foreach(target ${TARGETS})
+    set(INFO_MESSAGE "${INFO_MESSAGE}
+   run_${target}: Runs timings for the ${target} target with current configuration. Invoke as: \"cmake --build . --target run_${target}\" or \"make run_${target}\" on build/ directory.
+")
+endforeach()
 
+set(INFO_MESSAGE "${INFO_MESSAGE}
    run_all: Builds and runs all the predefined variants (Generators/compilers, debug/release, etc).
             See VARIANTS list after run_all custom target definition in CMakeLists.txt.
             Invoke as: \"cmake --build . --target run_all\" or \"make run_all\" on build/ directory.
 ")
+
+message("${INFO_MESSAGE}")
