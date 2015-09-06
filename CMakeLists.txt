@@ -114,10 +114,12 @@ foreach(name ${SOURCE_NAMES})
                           COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
                           WORKING_DIRECTORY ${OUTPUT_PATH})
     else()
+        # In addition to the REGEX REPLACE " " ";" bellow at variant targets, this annoying cmake 
+        # behavior of scaping spaces on cli commands on linux makes neccesary to scape the string:
         add_custom_target(run_${name}
-                          COMMAND ${CMAKE_COMMAND} -E echo "${run_status_message}"
+                          COMMAND ${CMAKE_COMMAND} -E echo \"${run_status_message}\"
                           COMMAND ./${target} | tee ${OUTPUT_FILE}
-                          COMMAND ${CMAKE_COMMAND} -E echo "${run_finished_message}"
+                          COMMAND ${CMAKE_COMMAND} -E echo \"${run_finished_message}\"
                           WORKING_DIRECTORY ${OUTPUT_PATH})
     endif()
 
@@ -141,7 +143,14 @@ function(generate_all_targets TARGET_NAME RUN)
 
     foreach(i RANGE ${end})
         list(GET VARIANTS ${i} variant)
+        if(UNIX)
+          # See http://www.cmake.org/pipermail/cmake/2009-October/032380.html
+          string(REGEX REPLACE " " ";" variant "${variant}")
+        endif()
         string(REGEX REPLACE " " "-" variant_label "${variant}")
+
+        message(STATUS "Setting up command for \"${variant}\" variant...")
+        message("   (Common variant flags: \"${COMMON_VARIANT_FLAGS}\")")        
 
         add_custom_command(TARGET ${TARGET_NAME}
                            COMMAND ${CMAKE_COMMAND} -E echo "Setting up '${variant}'"

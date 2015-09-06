@@ -1,5 +1,5 @@
 	.text
-	.file	"/home/manu343726/Documentos/joaquin-dod/dod_perf.cpp"
+	.file	"/home/manu343726/Documentos/joaquin-dod/dod_perfv2.cpp"
 	.globl	_Z12pause_timingv
 	.align	16, 0x90
 	.type	_Z12pause_timingv,@function
@@ -159,9 +159,9 @@ main:                                   # @main
 	pushq	%rbx
 .Ltmp81:
 	.cfi_def_cfa_offset 56
-	subq	$280, %rsp              # imm = 0x118
+	subq	$296, %rsp              # imm = 0x128
 .Ltmp82:
-	.cfi_def_cfa_offset 336
+	.cfi_def_cfa_offset 352
 .Ltmp83:
 	.cfi_offset %rbx, -56
 .Ltmp84:
@@ -182,7 +182,7 @@ main:                                   # @main
 	movq	-24(%rax), %rax
 	movq	_ZSt4cout+240(%rax), %rbx
 	testq	%rbx, %rbx
-	je	.LBB5_275
+	je	.LBB5_272
 # BB#1:                                 # %_ZSt13__check_facetISt5ctypeIcEERKT_PS3_.exit63
 	cmpb	$0, 56(%rbx)
 	je	.LBB5_3
@@ -210,7 +210,7 @@ main:                                   # @main
 	movq	-24(%rax), %rax
 	movq	_ZSt4cout+240(%rax), %rbx
 	testq	%rbx, %rbx
-	je	.LBB5_275
+	je	.LBB5_272
 # BB#5:                                 # %_ZSt13__check_facetISt5ctypeIcEERKT_PS3_.exit
 	cmpb	$0, 56(%rbx)
 	je	.LBB5_7
@@ -231,101 +231,102 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZNSo5flushEv
 	movl	$10000, %r14d           # imm = 0x2710
-	leaq	200(%rsp), %r9
 	.align	16, 0x90
 .LBB5_9:                                # =>This Loop Header: Depth=1
                                         #     Child Loop BB5_10 Depth 2
-                                        #     Child Loop BB5_118 Depth 2
-                                        #       Child Loop BB5_120 Depth 3
-                                        #         Child Loop BB5_121 Depth 4
-                                        #       Child Loop BB5_119 Depth 3
-                                        #     Child Loop BB5_125 Depth 2
-                                        #       Child Loop BB5_144 Depth 3
-                                        #     Child Loop BB5_133 Depth 2
+                                        #     Child Loop BB5_114 Depth 2
+                                        #       Child Loop BB5_116 Depth 3
+                                        #         Child Loop BB5_117 Depth 4
+                                        #       Child Loop BB5_115 Depth 3
+                                        #     Child Loop BB5_121 Depth 2
+                                        #       Child Loop BB5_132 Depth 3
+                                        #     Child Loop BB5_129 Depth 2
                                         #       Child Loop BB5_134 Depth 3
                                         #         Child Loop BB5_135 Depth 4
+                                        #       Child Loop BB5_130 Depth 3
                                         #     Child Loop BB5_139 Depth 2
-                                        #       Child Loop BB5_147 Depth 3
+                                        #       Child Loop BB5_158 Depth 3
+                                        #     Child Loop BB5_147 Depth 2
+                                        #       Child Loop BB5_148 Depth 3
+                                        #         Child Loop BB5_149 Depth 4
                                         #     Child Loop BB5_153 Depth 2
-                                        #       Child Loop BB5_154 Depth 3
-                                        #         Child Loop BB5_155 Depth 4
-                                        #     Child Loop BB5_159 Depth 2
-                                        #       Child Loop BB5_178 Depth 3
+                                        #       Child Loop BB5_161 Depth 3
                                         #     Child Loop BB5_167 Depth 2
                                         #       Child Loop BB5_168 Depth 3
                                         #         Child Loop BB5_169 Depth 4
                                         #     Child Loop BB5_173 Depth 2
-                                        #       Child Loop BB5_181 Depth 3
+                                        #       Child Loop BB5_192 Depth 3
+                                        #     Child Loop BB5_181 Depth 2
+                                        #       Child Loop BB5_182 Depth 3
+                                        #         Child Loop BB5_183 Depth 4
                                         #     Child Loop BB5_187 Depth 2
-                                        #       Child Loop BB5_188 Depth 3
-                                        #         Child Loop BB5_189 Depth 4
-                                        #     Child Loop BB5_193 Depth 2
-                                        #       Child Loop BB5_212 Depth 3
+                                        #       Child Loop BB5_195 Depth 3
                                         #     Child Loop BB5_201 Depth 2
                                         #       Child Loop BB5_202 Depth 3
                                         #         Child Loop BB5_203 Depth 4
                                         #     Child Loop BB5_207 Depth 2
-                                        #       Child Loop BB5_215 Depth 3
+                                        #       Child Loop BB5_226 Depth 3
+                                        #     Child Loop BB5_215 Depth 2
+                                        #       Child Loop BB5_216 Depth 3
+                                        #         Child Loop BB5_217 Depth 4
                                         #     Child Loop BB5_221 Depth 2
-                                        #       Child Loop BB5_222 Depth 3
-                                        #         Child Loop BB5_223 Depth 4
-                                        #     Child Loop BB5_227 Depth 2
-                                        #       Child Loop BB5_246 Depth 3
+                                        #       Child Loop BB5_229 Depth 3
                                         #     Child Loop BB5_235 Depth 2
                                         #       Child Loop BB5_236 Depth 3
                                         #         Child Loop BB5_237 Depth 4
                                         #     Child Loop BB5_241 Depth 2
-                                        #       Child Loop BB5_249 Depth 3
+                                        #       Child Loop BB5_252 Depth 3
 	xorps	%xmm0, %xmm0
-	movaps	%xmm0, 176(%rsp)
-	movq	$0, 192(%rsp)
+	movaps	%xmm0, 192(%rsp)
+	movq	$0, 208(%rsp)
 	testq	%r14, %r14
-	movl	$0, %r11d
-	movl	$0, %r10d
+	movl	$0, %edi
+	movl	$0, %r9d
 	movl	$0, %r8d
 	movl	$0, %edx
 	movl	$0, %eax
-	movq	%rax, 136(%rsp)         # 8-byte Spill
-	movl	$0, %eax
-	movq	%rax, 104(%rsp)         # 8-byte Spill
-	movl	$0, %eax
 	movq	%rax, 24(%rsp)          # 8-byte Spill
 	movl	$0, %eax
-	movq	%rax, 16(%rsp)          # 8-byte Spill
+	movq	%rax, 120(%rsp)         # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 40(%rsp)          # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 32(%rsp)          # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 128(%rsp)         # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 48(%rsp)          # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 160(%rsp)         # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 144(%rsp)         # 8-byte Spill
+	movl	$0, %eax
+	movq	%rax, 56(%rsp)          # 8-byte Spill
+	movl	$0, %r15d
 	movl	$0, %eax
 	movq	%rax, 112(%rsp)         # 8-byte Spill
 	movl	$0, %eax
-	movq	%rax, 32(%rsp)          # 8-byte Spill
-	movl	$0, %r13d
-	movl	$0, %esi
-	movl	$0, %eax
-	movq	%rax, 40(%rsp)          # 8-byte Spill
-	movl	$0, %r15d
+	movq	%rax, 64(%rsp)          # 8-byte Spill
+	movl	$0, %ebp
 	movl	$0, %eax
 	movq	%rax, 96(%rsp)          # 8-byte Spill
 	movl	$0, %eax
-	movq	%rax, 48(%rsp)          # 8-byte Spill
-	movl	$0, %ebp
-	movl	$0, %eax
-	movq	%rax, 80(%rsp)          # 8-byte Spill
-	movl	$0, %eax
-	movq	%rax, 72(%rsp)          # 8-byte Spill
+	movq	%rax, 88(%rsp)          # 8-byte Spill
 	movl	$0, %ebx
 	movl	$0, %eax
-	movq	%rax, 144(%rsp)         # 8-byte Spill
+	movq	%rax, 152(%rsp)         # 8-byte Spill
 	jne	.LBB5_10
-	jmp	.LBB5_115
+	jmp	.LBB5_111
 	.align	16, 0x90
-.LBB5_96:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit48._crit_edge
+.LBB5_93:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit48._crit_edge
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	%rcx, 104(%rsp)         # 8-byte Spill
-	movq	184(%rsp), %r10
-	movq	192(%rsp), %r8
-	addl	$2, %r11d
+	movq	200(%rsp), %r9
+	movq	208(%rsp), %r8
+	addl	$2, %edi
 .LBB5_10:                               # %.lr.ph
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Inner Loop Header: Depth=2
-	movq	%rdx, 88(%rsp)          # 8-byte Spill
+	movq	%rdx, 104(%rsp)         # 8-byte Spill
 	movq	%rdx, %rbx
 	movq	%rbx, %rax
 	movabsq	$-3689348814741910323, %rdx # imm = 0xCCCCCCCCCCCCCCCD
@@ -333,76 +334,70 @@ main:                                   # @main
 	movl	%edx, %eax
 	shrl	$2, %eax
 	leal	(%rax,%rax,4), %eax
-	movl	%ebx, %edi
-	subl	%eax, %edi
+	movl	%ebx, %ecx
+	subl	%eax, %ecx
 	movq	%rdx, %rax
 	shrq	$4, %rax
 	imull	$20, %eax, %eax
-	movl	%ebx, %ecx
-	subl	%eax, %ecx
-	movl	%ecx, 60(%rsp)          # 4-byte Spill
+	movl	%ebx, %esi
+	subl	%eax, %esi
+	movl	%esi, 76(%rsp)          # 4-byte Spill
 	shrq	$3, %rdx
 	imull	$10, %edx, %eax
-	movb	%dil, 152(%rsp)
-	movl	%ebx, 156(%rsp)
+	movb	%cl, 168(%rsp)
+	movl	%ebx, 172(%rsp)
 	movl	%ebx, %edx
 	subl	%eax, %edx
-	movl	%r11d, 160(%rsp)
-	movl	%ecx, 164(%rsp)
-	movl	%edx, 168(%rsp)
-	cmpq	%r8, %r10
+	movl	%edi, 176(%rsp)
+	movl	%esi, 180(%rsp)
+	movl	%edx, 184(%rsp)
+	cmpq	%r8, %r9
 	je	.LBB5_14
 # BB#11:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	%edi, 64(%rsp)          # 4-byte Spill
-	movq	%rsi, 128(%rsp)         # 8-byte Spill
-	movq	%r11, 144(%rsp)         # 8-byte Spill
-	testq	%r10, %r10
+	movl	%ecx, 80(%rsp)          # 4-byte Spill
+	movq	%rdi, 152(%rsp)         # 8-byte Spill
+	testq	%r9, %r9
 	movl	$0, %eax
 	je	.LBB5_13
 # BB#12:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	168(%rsp), %eax
-	movl	%eax, 16(%r10)
-	movups	152(%rsp), %xmm0
-	movups	%xmm0, (%r10)
-	movq	%r10, %rax
+	movl	184(%rsp), %eax
+	movl	%eax, 16(%r9)
+	movups	168(%rsp), %xmm0
+	movups	%xmm0, (%r9)
+	movq	%r9, %rax
 .LBB5_13:                               # %_ZNSt16allocator_traitsISaI14plain_particleEE9constructIS0_JS0_EEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS1_PT_DpOS4_.exit.i.i
                                         #   in Loop: Header=BB5_10 Depth=2
-	movl	%edx, 56(%rsp)          # 4-byte Spill
-	movq	%r9, %rbx
+	movl	%edx, 72(%rsp)          # 4-byte Spill
 	addq	$20, %rax
-	movq	%rax, 184(%rsp)
+	movq	%rax, 200(%rsp)
 	jmp	.LBB5_15
 	.align	16, 0x90
 .LBB5_14:                               #   in Loop: Header=BB5_10 Depth=2
 .Ltmp7:
-	movl	%edi, 64(%rsp)          # 4-byte Spill
-	movl	%edx, 56(%rsp)          # 4-byte Spill
-	movq	%rsi, 128(%rsp)         # 8-byte Spill
-	movq	%r11, 144(%rsp)         # 8-byte Spill
-	movq	%r9, %rbx
-	leaq	176(%rsp), %rdi
-	leaq	152(%rsp), %rsi
+	movl	%ecx, 80(%rsp)          # 4-byte Spill
+	movl	%edx, 72(%rsp)          # 4-byte Spill
+	movq	%rdi, 152(%rsp)         # 8-byte Spill
+	leaq	192(%rsp), %rdi
+	leaq	168(%rsp), %rsi
 	callq	_ZNSt6vectorI14plain_particleSaIS0_EE19_M_emplace_back_auxIJS0_EEEvDpOT_
 .Ltmp8:
 .LBB5_15:                               # %_ZNSt6vectorI14plain_particleSaIS0_EE9push_backEOS0_.exit
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	80(%rsp), %rdx          # 8-byte Reload
-	cmpq	72(%rsp), %rdx          # 8-byte Folded Reload
-	movq	%rbx, %r9
+	movq	96(%rsp), %rdx          # 8-byte Reload
+	cmpq	88(%rsp), %rdx          # 8-byte Folded Reload
 	je	.LBB5_19
 # BB#16:                                #   in Loop: Header=BB5_10 Depth=2
 	testq	%rdx, %rdx
 	movl	$0, %eax
 	je	.LBB5_18
 # BB#17:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	64(%rsp), %eax          # 4-byte Reload
+	movl	80(%rsp), %eax          # 4-byte Reload
 	movb	%al, (%rdx)
 	movq	%rdx, %rax
 .LBB5_18:                               # %_ZNSt16allocator_traitsISaIcEE9constructIcJRKcEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i
                                         #   in Loop: Header=BB5_10 Depth=2
 	incq	%rax
-	movq	%rax, 80(%rsp)          # 8-byte Spill
-	movq	136(%rsp), %rax         # 8-byte Reload
+	movq	%rax, 96(%rsp)          # 8-byte Spill
 	jmp	.LBB5_31
 	.align	16, 0x90
 .LBB5_19:                               #   in Loop: Header=BB5_10 Depth=2
@@ -419,25 +414,26 @@ main:                                   # @main
 	addq	%r12, %rcx
 	movq	$-1, %rax
 	cmovbq	%rax, %rcx
-	movq	%rcx, 72(%rsp)          # 8-byte Spill
+	movq	%rcx, 88(%rsp)          # 8-byte Spill
 	testq	%rcx, %rcx
 	movl	$0, %ebx
 	je	.LBB5_24
 # BB#22:                                #   in Loop: Header=BB5_10 Depth=2
 .Ltmp9:
-	movq	72(%rsp), %rdi          # 8-byte Reload
+	movq	%rdx, %r13
+	movq	88(%rsp), %rdi          # 8-byte Reload
 	callq	_Znwm
 	movq	%rax, %rbx
 .Ltmp10:
 # BB#23:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	80(%rsp), %rdx          # 8-byte Reload
+	movq	%r13, %rdx
 .LBB5_24:                               # %_ZNSt12_Vector_baseIcSaIcEE11_M_allocateEm.exit.i
                                         #   in Loop: Header=BB5_10 Depth=2
 	movq	%rbx, %rax
 	addq	%r12, %rax
 	je	.LBB5_26
 # BB#25:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	64(%rsp), %ecx          # 4-byte Reload
+	movl	80(%rsp), %ecx          # 4-byte Reload
 	movb	%cl, (%rax)
 .LBB5_26:                               # %_ZNSt16allocator_traitsISaIcEE9constructIcJRKcEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i7
                                         #   in Loop: Header=BB5_10 Depth=2
@@ -457,45 +453,40 @@ main:                                   # @main
 .LBB5_30:                               # %.noexc5
                                         #   in Loop: Header=BB5_10 Depth=2
 	leaq	1(%r12,%rbx), %rax
-	movq	%rax, 80(%rsp)          # 8-byte Spill
-	addq	%rbx, 72(%rsp)          # 8-byte Folded Spill
+	movq	%rax, 96(%rsp)          # 8-byte Spill
+	addq	%rbx, 88(%rsp)          # 8-byte Folded Spill
 	movq	%rbx, %rbp
-	movq	136(%rsp), %rax         # 8-byte Reload
-	leaq	200(%rsp), %rdi
-	movq	%rdi, %r9
 .LBB5_31:                               # %_ZNSt6vectorIcSaIcEE9push_backERKc.exit
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	144(%rsp), %r11         # 8-byte Reload
-	movq	112(%rsp), %rdx         # 8-byte Reload
-	movq	128(%rsp), %rsi         # 8-byte Reload
-	movq	96(%rsp), %rcx          # 8-byte Reload
-	cmpq	48(%rsp), %rcx          # 8-byte Folded Reload
+	movq	152(%rsp), %rdi         # 8-byte Reload
+	movq	128(%rsp), %rcx         # 8-byte Reload
+	movq	144(%rsp), %rdx         # 8-byte Reload
+	movq	112(%rsp), %rax         # 8-byte Reload
+	cmpq	64(%rsp), %rax          # 8-byte Folded Reload
 	je	.LBB5_35
 # BB#32:                                #   in Loop: Header=BB5_10 Depth=2
-	testq	%rcx, %rcx
+	testq	%rax, %rax
 	je	.LBB5_34
 # BB#33:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%rcx, %rbx
-	movq	88(%rsp), %rcx          # 8-byte Reload
-	movl	%ecx, (%rbx)
-	movq	%rbx, %rcx
+	movq	%rax, %rsi
+	movq	104(%rsp), %rax         # 8-byte Reload
+	movl	%eax, (%rsi)
+	movq	%rsi, %rax
 .LBB5_34:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i
                                         #   in Loop: Header=BB5_10 Depth=2
-	addq	$4, %rcx
-	movq	%rcx, 96(%rsp)          # 8-byte Spill
-	jmp	.LBB5_47
+	addq	$4, %rax
+	movq	%rax, 112(%rsp)         # 8-byte Spill
+	jmp	.LBB5_46
 	.align	16, 0x90
 .LBB5_35:                               #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, 128(%rsp)         # 8-byte Spill
-	movq	%r11, 144(%rsp)         # 8-byte Spill
-	movq	%rax, 136(%rsp)         # 8-byte Spill
-	subq	%r15, %rcx
-	movq	%rcx, 96(%rsp)          # 8-byte Spill
-	movq	%rcx, %rsi
-	sarq	$2, %rsi
+	movq	%rdi, 152(%rsp)         # 8-byte Spill
+	subq	%r15, %rax
+	movq	%rax, 112(%rsp)         # 8-byte Spill
+	movq	%rax, %r13
+	sarq	$2, %r13
 	movl	$1, %ebx
-	cmovneq	%rsi, %rbx
-	addq	%rsi, %rbx
+	cmovneq	%r13, %rbx
+	addq	%r13, %rbx
 	setb	%al
 	movabsq	$4611686018427387903, %rcx # imm = 0x3FFFFFFFFFFFFFFF
 	movq	%rcx, %rdx
@@ -505,86 +496,75 @@ main:                                   # @main
 	cmovneq	%rdx, %rbx
 	testq	%rbx, %rbx
 	movl	$0, %r12d
-	je	.LBB5_40
+	je	.LBB5_39
 # BB#36:                                #   in Loop: Header=BB5_10 Depth=2
 	movabsq	$4611686018427387903, %rax # imm = 0x3FFFFFFFFFFFFFFF
 	cmpq	%rax, %rbx
 	ja	.LBB5_37
 .LBB5_38:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, 64(%rsp)          # 8-byte Spill
 	leaq	(,%rbx,4), %rdi
 .Ltmp11:
 	callq	_Znwm
 	movq	%rax, %r12
 .Ltmp12:
-# BB#39:                                # %.noexc17
+.LBB5_39:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	64(%rsp), %rsi          # 8-byte Reload
-.LBB5_40:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i
-                                        #   in Loop: Header=BB5_10 Depth=2
-	leaq	(,%rsi,4), %rax
+	leaq	(,%r13,4), %rax
 	addq	%r12, %rax
-	je	.LBB5_42
-# BB#41:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	88(%rsp), %rcx          # 8-byte Reload
-	movl	%ecx, (%rax)
-.LBB5_42:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i14
-                                        #   in Loop: Header=BB5_10 Depth=2
-	testq	%rsi, %rsi
-	je	.LBB5_44
-# BB#43:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%r12, %rdi
-	movq	%rsi, 64(%rsp)          # 8-byte Spill
-	movq	%r15, %rsi
-	movq	96(%rsp), %rdx          # 8-byte Reload
-	callq	memmove
-	movq	64(%rsp), %rsi          # 8-byte Reload
-.LBB5_44:                               #   in Loop: Header=BB5_10 Depth=2
-	testq	%r15, %r15
-	je	.LBB5_46
-# BB#45:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%r15, %rdi
-	movq	%rsi, %r15
-	callq	_ZdlPv
-	movq	%r15, %rsi
-.LBB5_46:                               # %.noexc10
-                                        #   in Loop: Header=BB5_10 Depth=2
-	leaq	4(%r12,%rsi,4), %rax
-	movq	%rax, 96(%rsp)          # 8-byte Spill
-	leaq	(%r12,%rbx,4), %rax
-	movq	%rax, 48(%rsp)          # 8-byte Spill
-	movq	%r12, %r15
-	movq	136(%rsp), %rax         # 8-byte Reload
-	leaq	200(%rsp), %rdi
-	movq	%rdi, %r9
-	movq	144(%rsp), %r11         # 8-byte Reload
-	movq	112(%rsp), %rdx         # 8-byte Reload
-	movq	128(%rsp), %rsi         # 8-byte Reload
-.LBB5_47:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit
-                                        #   in Loop: Header=BB5_10 Depth=2
-	cmpq	40(%rsp), %rsi          # 8-byte Folded Reload
+	je	.LBB5_41
+# BB#40:                                #   in Loop: Header=BB5_10 Depth=2
 	movq	104(%rsp), %rcx         # 8-byte Reload
-	je	.LBB5_51
-# BB#48:                                #   in Loop: Header=BB5_10 Depth=2
-	testq	%rsi, %rsi
-	je	.LBB5_50
-# BB#49:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	%r11d, (%rsi)
-.LBB5_50:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i18
+	movl	%ecx, (%rax)
+.LBB5_41:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i14
                                         #   in Loop: Header=BB5_10 Depth=2
-	addq	$4, %rsi
-	jmp	.LBB5_63
+	testq	%r13, %r13
+	je	.LBB5_43
+# BB#42:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	%r12, %rdi
+	movq	%r15, %rsi
+	movq	112(%rsp), %rdx         # 8-byte Reload
+	callq	memmove
+.LBB5_43:                               #   in Loop: Header=BB5_10 Depth=2
+	testq	%r15, %r15
+	je	.LBB5_45
+# BB#44:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	%r15, %rdi
+	callq	_ZdlPv
+.LBB5_45:                               # %.noexc10
+                                        #   in Loop: Header=BB5_10 Depth=2
+	leaq	4(%r12,%r13,4), %rax
+	movq	%rax, 112(%rsp)         # 8-byte Spill
+	leaq	(%r12,%rbx,4), %rax
+	movq	%rax, 64(%rsp)          # 8-byte Spill
+	movq	%r12, %r15
+	movq	152(%rsp), %rdi         # 8-byte Reload
+	movq	128(%rsp), %rcx         # 8-byte Reload
+	movq	144(%rsp), %rdx         # 8-byte Reload
+.LBB5_46:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit
+                                        #   in Loop: Header=BB5_10 Depth=2
+	cmpq	56(%rsp), %rdx          # 8-byte Folded Reload
+	movq	120(%rsp), %rax         # 8-byte Reload
+	je	.LBB5_50
+# BB#47:                                #   in Loop: Header=BB5_10 Depth=2
+	testq	%rdx, %rdx
+	je	.LBB5_49
+# BB#48:                                #   in Loop: Header=BB5_10 Depth=2
+	movl	%edi, (%rdx)
+.LBB5_49:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i18
+                                        #   in Loop: Header=BB5_10 Depth=2
+	addq	$4, %rdx
+	jmp	.LBB5_61
 	.align	16, 0x90
-.LBB5_51:                               #   in Loop: Header=BB5_10 Depth=2
-	movq	%r11, 144(%rsp)         # 8-byte Spill
-	movq	%rax, 136(%rsp)         # 8-byte Spill
-	subq	%r13, %rsi
-	movq	%rsi, 128(%rsp)         # 8-byte Spill
-	sarq	$2, %rsi
+.LBB5_50:                               #   in Loop: Header=BB5_10 Depth=2
+	movq	%rdi, 152(%rsp)         # 8-byte Spill
+	subq	160(%rsp), %rdx         # 8-byte Folded Reload
+	movq	%rdx, 144(%rsp)         # 8-byte Spill
+	movq	%rdx, %r13
+	sarq	$2, %r13
 	movl	$1, %ebx
-	cmovneq	%rsi, %rbx
-	addq	%rsi, %rbx
+	cmovneq	%r13, %rbx
+	addq	%r13, %rbx
 	setb	%al
 	movabsq	$4611686018427387903, %rcx # imm = 0x3FFFFFFFFFFFFFFF
 	movq	%rcx, %rdx
@@ -594,183 +574,78 @@ main:                                   # @main
 	cmovneq	%rdx, %rbx
 	testq	%rbx, %rbx
 	movl	$0, %r12d
-	je	.LBB5_56
-# BB#52:                                #   in Loop: Header=BB5_10 Depth=2
+	je	.LBB5_54
+# BB#51:                                #   in Loop: Header=BB5_10 Depth=2
 	movabsq	$4611686018427387903, %rax # imm = 0x3FFFFFFFFFFFFFFF
 	cmpq	%rax, %rbx
-	ja	.LBB5_53
-.LBB5_54:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i25
+	ja	.LBB5_52
+.LBB5_53:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i25
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, 64(%rsp)          # 8-byte Spill
 	leaq	(,%rbx,4), %rdi
 .Ltmp15:
 	callq	_Znwm
 	movq	%rax, %r12
 .Ltmp16:
-# BB#55:                                # %.noexc30
+.LBB5_54:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i26
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	64(%rsp), %rsi          # 8-byte Reload
-.LBB5_56:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i26
-                                        #   in Loop: Header=BB5_10 Depth=2
-	leaq	(,%rsi,4), %rax
+	leaq	(,%r13,4), %rax
 	addq	%r12, %rax
+	je	.LBB5_56
+# BB#55:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	152(%rsp), %rcx         # 8-byte Reload
+	movl	%ecx, (%rax)
+.LBB5_56:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i27
+                                        #   in Loop: Header=BB5_10 Depth=2
+	testq	%r13, %r13
+	movq	%r13, 80(%rsp)          # 8-byte Spill
+	movq	160(%rsp), %r13         # 8-byte Reload
+	movq	144(%rsp), %rdx         # 8-byte Reload
 	je	.LBB5_58
 # BB#57:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	144(%rsp), %rcx         # 8-byte Reload
-	movl	%ecx, (%rax)
-.LBB5_58:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i27
-                                        #   in Loop: Header=BB5_10 Depth=2
-	testq	%rsi, %rsi
+	movq	%r12, %rdi
+	movq	%r13, %rsi
+	callq	memmove
+.LBB5_58:                               #   in Loop: Header=BB5_10 Depth=2
+	testq	%r13, %r13
 	je	.LBB5_60
 # BB#59:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%r12, %rdi
-	movq	%rsi, 64(%rsp)          # 8-byte Spill
-	movq	%r13, %rsi
-	movq	128(%rsp), %rdx         # 8-byte Reload
-	callq	memmove
-	movq	64(%rsp), %rsi          # 8-byte Reload
-.LBB5_60:                               #   in Loop: Header=BB5_10 Depth=2
-	testq	%r13, %r13
-	je	.LBB5_62
-# BB#61:                                #   in Loop: Header=BB5_10 Depth=2
 	movq	%r13, %rdi
-	movq	%rsi, %r13
 	callq	_ZdlPv
-	movq	%r13, %rsi
-.LBB5_62:                               # %.noexc19
+.LBB5_60:                               # %.noexc19
                                         #   in Loop: Header=BB5_10 Depth=2
-	leaq	4(%r12,%rsi,4), %rsi
+	movq	80(%rsp), %rax          # 8-byte Reload
+	leaq	4(%r12,%rax,4), %rdx
 	leaq	(%r12,%rbx,4), %rax
-	movq	%rax, 40(%rsp)          # 8-byte Spill
-	movq	%r12, %r13
-	movq	136(%rsp), %rax         # 8-byte Reload
-	leaq	200(%rsp), %rdi
-	movq	%rdi, %r9
-	movq	144(%rsp), %r11         # 8-byte Reload
-	movq	104(%rsp), %rcx         # 8-byte Reload
-	movq	112(%rsp), %rdx         # 8-byte Reload
-.LBB5_63:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit20
+	movq	%rax, 56(%rsp)          # 8-byte Spill
+	movq	%r12, 160(%rsp)         # 8-byte Spill
+	movq	152(%rsp), %rdi         # 8-byte Reload
+	movq	120(%rsp), %rax         # 8-byte Reload
+	movq	128(%rsp), %rcx         # 8-byte Reload
+.LBB5_61:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit20
                                         #   in Loop: Header=BB5_10 Depth=2
-	cmpq	32(%rsp), %rdx          # 8-byte Folded Reload
-	je	.LBB5_67
-# BB#64:                                #   in Loop: Header=BB5_10 Depth=2
-	testq	%rdx, %rdx
-	je	.LBB5_66
-# BB#65:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	60(%rsp), %ebx          # 4-byte Reload
-	movl	%ebx, (%rdx)
-.LBB5_66:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i32
-                                        #   in Loop: Header=BB5_10 Depth=2
-	addq	$4, %rdx
-	jmp	.LBB5_79
-	.align	16, 0x90
-.LBB5_67:                               #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, 128(%rsp)         # 8-byte Spill
-	movq	%r11, 144(%rsp)         # 8-byte Spill
-	movq	%rax, 136(%rsp)         # 8-byte Spill
-	subq	16(%rsp), %rdx          # 8-byte Folded Reload
-	movq	%rdx, 112(%rsp)         # 8-byte Spill
-	movq	%rdx, %rbx
-	sarq	$2, %rbx
-	movl	$1, %r12d
-	cmovneq	%rbx, %r12
-	addq	%rbx, %r12
-	setb	%al
-	movabsq	$4611686018427387903, %rcx # imm = 0x3FFFFFFFFFFFFFFF
-	movq	%rcx, %rdx
-	cmpq	%r12, %rdx
-	setb	%cl
-	orb	%al, %cl
-	cmovneq	%rdx, %r12
-	testq	%r12, %r12
-	movl	$0, %eax
-	je	.LBB5_72
-# BB#68:                                #   in Loop: Header=BB5_10 Depth=2
-	movabsq	$4611686018427387903, %rax # imm = 0x3FFFFFFFFFFFFFFF
-	cmpq	%rax, %r12
-	ja	.LBB5_69
-.LBB5_70:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i39
-                                        #   in Loop: Header=BB5_10 Depth=2
-	movq	%rbx, 64(%rsp)          # 8-byte Spill
-	leaq	(,%r12,4), %rdi
-.Ltmp19:
-	callq	_Znwm
-.Ltmp20:
-# BB#71:                                # %.noexc44
-                                        #   in Loop: Header=BB5_10 Depth=2
-	movq	64(%rsp), %rbx          # 8-byte Reload
-.LBB5_72:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i40
-                                        #   in Loop: Header=BB5_10 Depth=2
-	movq	%rax, 8(%rsp)           # 8-byte Spill
-	leaq	(,%rbx,4), %rdx
-	addq	%rax, %rdx
-	je	.LBB5_74
-# BB#73:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	60(%rsp), %ecx          # 4-byte Reload
-	movl	%ecx, (%rdx)
-.LBB5_74:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i41
-                                        #   in Loop: Header=BB5_10 Depth=2
-	testq	%rbx, %rbx
-	movq	16(%rsp), %rax          # 8-byte Reload
-	movq	%rax, %rsi
-	movq	112(%rsp), %rdx         # 8-byte Reload
-	je	.LBB5_76
-# BB#75:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	8(%rsp), %rdi           # 8-byte Reload
-	movq	%rbx, 64(%rsp)          # 8-byte Spill
-	movq	%rsi, %rbx
-	callq	memmove
-	movq	%rbx, %rsi
-	movq	64(%rsp), %rbx          # 8-byte Reload
-.LBB5_76:                               #   in Loop: Header=BB5_10 Depth=2
-	testq	%rsi, %rsi
-	je	.LBB5_78
-# BB#77:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, %rdi
-	movq	%rbx, 64(%rsp)          # 8-byte Spill
-	callq	_ZdlPv
-	movq	64(%rsp), %rbx          # 8-byte Reload
-.LBB5_78:                               # %.noexc33
-                                        #   in Loop: Header=BB5_10 Depth=2
-	movq	8(%rsp), %rcx           # 8-byte Reload
-	leaq	4(%rcx,%rbx,4), %rdx
-	leaq	(%rcx,%r12,4), %rax
-	movq	%rax, 32(%rsp)          # 8-byte Spill
-	movq	%rcx, 16(%rsp)          # 8-byte Spill
-	movq	136(%rsp), %rax         # 8-byte Reload
-	leaq	200(%rsp), %rdi
-	movq	%rdi, %r9
-	movq	144(%rsp), %r11         # 8-byte Reload
-	movq	104(%rsp), %rcx         # 8-byte Reload
-	movq	128(%rsp), %rsi         # 8-byte Reload
-.LBB5_79:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit34
-                                        #   in Loop: Header=BB5_10 Depth=2
-	cmpq	24(%rsp), %rcx          # 8-byte Folded Reload
-	je	.LBB5_83
-# BB#80:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%rdx, 112(%rsp)         # 8-byte Spill
+	cmpq	48(%rsp), %rcx          # 8-byte Folded Reload
+	je	.LBB5_65
+# BB#62:                                #   in Loop: Header=BB5_10 Depth=2
 	testq	%rcx, %rcx
-	je	.LBB5_82
-# BB#81:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	56(%rsp), %edx          # 4-byte Reload
-	movl	%edx, (%rcx)
-.LBB5_82:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i46
+	je	.LBB5_64
+# BB#63:                                #   in Loop: Header=BB5_10 Depth=2
+	movl	76(%rsp), %esi          # 4-byte Reload
+	movl	%esi, (%rcx)
+.LBB5_64:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i32
                                         #   in Loop: Header=BB5_10 Depth=2
 	addq	$4, %rcx
-	jmp	.LBB5_95
+	jmp	.LBB5_76
 	.align	16, 0x90
-.LBB5_83:                               #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, 128(%rsp)         # 8-byte Spill
-	movq	%rdx, 112(%rsp)         # 8-byte Spill
-	movq	%r11, 144(%rsp)         # 8-byte Spill
-	subq	%rax, %rcx
-	movq	%rcx, 104(%rsp)         # 8-byte Spill
-	movq	%rax, 136(%rsp)         # 8-byte Spill
-	movq	%rcx, %rsi
-	sarq	$2, %rsi
+.LBB5_65:                               #   in Loop: Header=BB5_10 Depth=2
+	movq	%rdx, 144(%rsp)         # 8-byte Spill
+	movq	%rdi, 152(%rsp)         # 8-byte Spill
+	subq	32(%rsp), %rcx          # 8-byte Folded Reload
+	movq	%rcx, 128(%rsp)         # 8-byte Spill
+	movq	%rcx, %r13
+	sarq	$2, %r13
 	movl	$1, %ebx
-	cmovneq	%rsi, %rbx
-	addq	%rsi, %rbx
+	cmovneq	%r13, %rbx
+	addq	%r13, %rbx
 	setb	%al
 	movabsq	$4611686018427387903, %rcx # imm = 0x3FFFFFFFFFFFFFFF
 	movq	%rcx, %rdx
@@ -780,111 +655,188 @@ main:                                   # @main
 	cmovneq	%rdx, %rbx
 	testq	%rbx, %rbx
 	movl	$0, %r12d
-	je	.LBB5_88
-# BB#84:                                #   in Loop: Header=BB5_10 Depth=2
+	je	.LBB5_69
+# BB#66:                                #   in Loop: Header=BB5_10 Depth=2
 	movabsq	$4611686018427387903, %rax # imm = 0x3FFFFFFFFFFFFFFF
 	cmpq	%rax, %rbx
-	ja	.LBB5_85
-.LBB5_86:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i53
+	ja	.LBB5_67
+.LBB5_68:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i39
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, 64(%rsp)          # 8-byte Spill
+	leaq	(,%rbx,4), %rdi
+.Ltmp19:
+	callq	_Znwm
+	movq	%rax, %r12
+.Ltmp20:
+.LBB5_69:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i40
+                                        #   in Loop: Header=BB5_10 Depth=2
+	leaq	(,%r13,4), %rax
+	addq	%r12, %rax
+	je	.LBB5_71
+# BB#70:                                #   in Loop: Header=BB5_10 Depth=2
+	movl	76(%rsp), %ecx          # 4-byte Reload
+	movl	%ecx, (%rax)
+.LBB5_71:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i41
+                                        #   in Loop: Header=BB5_10 Depth=2
+	testq	%r13, %r13
+	movq	%r13, 80(%rsp)          # 8-byte Spill
+	movq	32(%rsp), %r13          # 8-byte Reload
+	movq	128(%rsp), %rdx         # 8-byte Reload
+	je	.LBB5_73
+# BB#72:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	%r12, %rdi
+	movq	%r13, %rsi
+	callq	memmove
+.LBB5_73:                               #   in Loop: Header=BB5_10 Depth=2
+	testq	%r13, %r13
+	je	.LBB5_75
+# BB#74:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	%r13, %rdi
+	callq	_ZdlPv
+.LBB5_75:                               # %.noexc33
+                                        #   in Loop: Header=BB5_10 Depth=2
+	movq	80(%rsp), %rax          # 8-byte Reload
+	leaq	4(%r12,%rax,4), %rcx
+	leaq	(%r12,%rbx,4), %rax
+	movq	%rax, 48(%rsp)          # 8-byte Spill
+	movq	%r12, 32(%rsp)          # 8-byte Spill
+	movq	152(%rsp), %rdi         # 8-byte Reload
+	movq	120(%rsp), %rax         # 8-byte Reload
+	movq	144(%rsp), %rdx         # 8-byte Reload
+.LBB5_76:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit34
+                                        #   in Loop: Header=BB5_10 Depth=2
+	cmpq	40(%rsp), %rax          # 8-byte Folded Reload
+	je	.LBB5_80
+# BB#77:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	%rdx, 144(%rsp)         # 8-byte Spill
+	movq	%rcx, 128(%rsp)         # 8-byte Spill
+	testq	%rax, %rax
+	je	.LBB5_79
+# BB#78:                                #   in Loop: Header=BB5_10 Depth=2
+	movl	72(%rsp), %ecx          # 4-byte Reload
+	movl	%ecx, (%rax)
+.LBB5_79:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i46
+                                        #   in Loop: Header=BB5_10 Depth=2
+	addq	$4, %rax
+	movq	%rax, 120(%rsp)         # 8-byte Spill
+	jmp	.LBB5_92
+	.align	16, 0x90
+.LBB5_80:                               #   in Loop: Header=BB5_10 Depth=2
+	movq	%rdx, 144(%rsp)         # 8-byte Spill
+	movq	%rcx, 128(%rsp)         # 8-byte Spill
+	movq	%rdi, 152(%rsp)         # 8-byte Spill
+	movq	24(%rsp), %rsi          # 8-byte Reload
+	subq	%rsi, %rax
+	movq	%rax, 120(%rsp)         # 8-byte Spill
+	movq	%rax, %r13
+	sarq	$2, %r13
+	movl	$1, %ebx
+	cmovneq	%r13, %rbx
+	addq	%r13, %rbx
+	setb	%al
+	movabsq	$4611686018427387903, %rcx # imm = 0x3FFFFFFFFFFFFFFF
+	movq	%rcx, %rdx
+	cmpq	%rbx, %rdx
+	setb	%cl
+	orb	%al, %cl
+	cmovneq	%rdx, %rbx
+	testq	%rbx, %rbx
+	movl	$0, %r12d
+	je	.LBB5_85
+# BB#81:                                #   in Loop: Header=BB5_10 Depth=2
+	movabsq	$4611686018427387903, %rax # imm = 0x3FFFFFFFFFFFFFFF
+	cmpq	%rax, %rbx
+	ja	.LBB5_82
+.LBB5_83:                               # %_ZNSt16allocator_traitsISaIiEE8allocateERS0_m.exit.i.i53
+                                        #   in Loop: Header=BB5_10 Depth=2
 	leaq	(,%rbx,4), %rdi
 .Ltmp23:
 	callq	_Znwm
 	movq	%rax, %r12
 .Ltmp24:
-# BB#87:                                # %.noexc58
+# BB#84:                                # %.noexc58
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	64(%rsp), %rsi          # 8-byte Reload
-.LBB5_88:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i54
+	movq	24(%rsp), %rsi          # 8-byte Reload
+.LBB5_85:                               # %_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm.exit.i54
                                         #   in Loop: Header=BB5_10 Depth=2
-	leaq	(,%rsi,4), %rax
+	leaq	(,%r13,4), %rax
 	addq	%r12, %rax
-	je	.LBB5_90
-# BB#89:                                #   in Loop: Header=BB5_10 Depth=2
-	movl	56(%rsp), %ecx          # 4-byte Reload
+	je	.LBB5_87
+# BB#86:                                #   in Loop: Header=BB5_10 Depth=2
+	movl	72(%rsp), %ecx          # 4-byte Reload
 	movl	%ecx, (%rax)
-.LBB5_90:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i55
+.LBB5_87:                               # %_ZNSt16allocator_traitsISaIiEE9constructIiJRKiEEEDTcl12_S_constructfp_fp0_spclsr3stdE7forwardIT0_Efp1_EEERS0_PT_DpOS5_.exit.i55
                                         #   in Loop: Header=BB5_10 Depth=2
-	testq	%rsi, %rsi
-	movq	%rsi, 64(%rsp)          # 8-byte Spill
-	movq	136(%rsp), %rsi         # 8-byte Reload
-	movq	104(%rsp), %rdx         # 8-byte Reload
-	je	.LBB5_92
-# BB#91:                                #   in Loop: Header=BB5_10 Depth=2
+	testq	%r13, %r13
+	movq	%r13, 80(%rsp)          # 8-byte Spill
+	movq	%rsi, %r13
+	je	.LBB5_89
+# BB#88:                                #   in Loop: Header=BB5_10 Depth=2
 	movq	%r12, %rdi
+	movq	%r13, %rsi
+	movq	120(%rsp), %rdx         # 8-byte Reload
 	callq	memmove
-	movq	136(%rsp), %rsi         # 8-byte Reload
-.LBB5_92:                               #   in Loop: Header=BB5_10 Depth=2
-	testq	%rsi, %rsi
-	je	.LBB5_94
-# BB#93:                                #   in Loop: Header=BB5_10 Depth=2
-	movq	%rsi, %rdi
+.LBB5_89:                               #   in Loop: Header=BB5_10 Depth=2
+	testq	%r13, %r13
+	je	.LBB5_91
+# BB#90:                                #   in Loop: Header=BB5_10 Depth=2
+	movq	%r13, %rdi
 	callq	_ZdlPv
-.LBB5_94:                               # %.noexc47
+.LBB5_91:                               # %.noexc47
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	64(%rsp), %rax          # 8-byte Reload
-	leaq	4(%r12,%rax,4), %rcx
+	movq	80(%rsp), %rax          # 8-byte Reload
+	leaq	4(%r12,%rax,4), %rax
+	movq	%rax, 120(%rsp)         # 8-byte Spill
 	leaq	(%r12,%rbx,4), %rax
-	movq	%rax, 24(%rsp)          # 8-byte Spill
-	movq	%r12, %rax
-	leaq	200(%rsp), %rdi
-	movq	%rdi, %r9
-	movq	144(%rsp), %r11         # 8-byte Reload
-	movq	128(%rsp), %rsi         # 8-byte Reload
-.LBB5_95:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit48
+	movq	%rax, 40(%rsp)          # 8-byte Spill
+	movq	%r12, 24(%rsp)          # 8-byte Spill
+	movq	152(%rsp), %rdi         # 8-byte Reload
+.LBB5_92:                               # %_ZNSt6vectorIiSaIiEE9push_backERKi.exit48
                                         #   in Loop: Header=BB5_10 Depth=2
-	movq	%rax, 136(%rsp)         # 8-byte Spill
-	movq	88(%rsp), %rax          # 8-byte Reload
+	movq	104(%rsp), %rax         # 8-byte Reload
 	incq	%rax
 	cmpq	%r14, %rax
 	movq	%rax, %rdx
-	jb	.LBB5_96
-	jmp	.LBB5_114
+	jb	.LBB5_93
+	jmp	.LBB5_110
 .LBB5_20:                               #   in Loop: Header=BB5_10 Depth=2
 .Ltmp28:
 	movl	$.L.str3, %edi
-	movq	16(%rsp), %rbx          # 8-byte Reload
 	callq	_ZSt20__throw_length_errorPKc
 .Ltmp29:
 	jmp	.LBB5_21
 .LBB5_37:                               #   in Loop: Header=BB5_10 Depth=2
 .Ltmp13:
-	movq	16(%rsp), %rbx          # 8-byte Reload
 	callq	_ZSt17__throw_bad_allocv
 .Ltmp14:
 	jmp	.LBB5_38
-.LBB5_53:                               #   in Loop: Header=BB5_10 Depth=2
+.LBB5_52:                               #   in Loop: Header=BB5_10 Depth=2
 .Ltmp17:
-	movq	16(%rsp), %rbx          # 8-byte Reload
 	callq	_ZSt17__throw_bad_allocv
 .Ltmp18:
-	jmp	.LBB5_54
-.LBB5_69:                               #   in Loop: Header=BB5_10 Depth=2
+	jmp	.LBB5_53
+.LBB5_67:                               #   in Loop: Header=BB5_10 Depth=2
 .Ltmp21:
-	movq	16(%rsp), %rbx          # 8-byte Reload
 	callq	_ZSt17__throw_bad_allocv
 .Ltmp22:
-	jmp	.LBB5_70
-.LBB5_85:                               #   in Loop: Header=BB5_10 Depth=2
+	jmp	.LBB5_68
+.LBB5_82:                               #   in Loop: Header=BB5_10 Depth=2
 .Ltmp26:
-	movq	16(%rsp), %rbx          # 8-byte Reload
 	callq	_ZSt17__throw_bad_allocv
 .Ltmp27:
-	jmp	.LBB5_86
+	jmp	.LBB5_83
 	.align	16, 0x90
-.LBB5_114:                              # %._crit_edge
+.LBB5_110:                              # %._crit_edge
                                         #   in Loop: Header=BB5_9 Depth=1
-	movq	176(%rsp), %rax
-	movq	%rax, 144(%rsp)         # 8-byte Spill
-	movq	184(%rsp), %rbx
-.LBB5_115:                              #   in Loop: Header=BB5_9 Depth=1
+	movq	192(%rsp), %rax
+	movq	%rax, 152(%rsp)         # 8-byte Spill
+	movq	200(%rsp), %rbx
+.LBB5_111:                              #   in Loop: Header=BB5_9 Depth=1
 .Ltmp30:
 	movl	$_ZSt4cout, %edi
 	movq	%r14, %rsi
 	callq	_ZNSo9_M_insertImEERSoT_
 .Ltmp31:
-# BB#116:                               # %_ZNSolsEm.exit
+# BB#112:                               # %_ZNSolsEm.exit
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp32:
 	movl	$.L.str2, %esi
@@ -892,119 +844,116 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp33:
-# BB#117:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit
+# BB#113:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit
                                         #   in Loop: Header=BB5_9 Depth=1
-	xorl	%eax, %eax
+	xorl	%r13d, %r13d
 	.align	16, 0x90
-.LBB5_118:                              #   Parent Loop BB5_9 Depth=1
+.LBB5_114:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_120 Depth 3
-                                        #         Child Loop BB5_121 Depth 4
-                                        #       Child Loop BB5_119 Depth 3
-	movq	%rax, 128(%rsp)         # 8-byte Spill
+                                        #       Child Loop BB5_116 Depth 3
+                                        #         Child Loop BB5_117 Depth 4
+                                        #       Child Loop BB5_115 Depth 3
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%r12d, %r12d
-	cmpq	%rbx, 144(%rsp)         # 8-byte Folded Reload
-	je	.LBB5_119
+	cmpq	%rbx, 152(%rsp)         # 8-byte Folded Reload
+	je	.LBB5_115
 	.align	16, 0x90
-.LBB5_120:                              # %.lr.ph.i.i.preheader.i.i
+.LBB5_116:                              # %.lr.ph.i.i.preheader.i.i
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_118 Depth=2
+                                        #     Parent Loop BB5_114 Depth=2
                                         # =>    This Loop Header: Depth=3
-                                        #         Child Loop BB5_121 Depth 4
+                                        #         Child Loop BB5_117 Depth 4
 	movl	$0, _ZL13render_output(%rip)
 	xorl	%eax, %eax
-	movq	144(%rsp), %rcx         # 8-byte Reload
+	movq	152(%rsp), %rcx         # 8-byte Reload
 	.align	16, 0x90
-.LBB5_121:                              # %.lr.ph.i.i.i.i
+.LBB5_117:                              # %.lr.ph.i.i.i.i
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_118 Depth=2
-                                        #       Parent Loop BB5_120 Depth=3
+                                        #     Parent Loop BB5_114 Depth=2
+                                        #       Parent Loop BB5_116 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
 	movsbl	(%rcx), %edx
 	addl	4(%rcx), %eax
 	addl	8(%rcx), %eax
-	leaq	20(%rcx), %rcx
 	addl	%edx, %eax
 	movl	%eax, _ZL13render_output(%rip)
+	addq	$20, %rcx
 	cmpq	%rcx, %rbx
-	jne	.LBB5_121
-# BB#122:                               # %_ZZ4mainENK3$_0clEv.exit.i.i
-                                        #   in Loop: Header=BB5_120 Depth=3
+	jne	.LBB5_117
+# BB#118:                               # %_ZZ4mainENK3$_0clEv.exit.i.i
+                                        #   in Loop: Header=BB5_116 Depth=3
 	incl	%r12d
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	jl	.LBB5_120
-	jmp	.LBB5_123
+	jl	.LBB5_116
+	jmp	.LBB5_119
 	.align	16, 0x90
-.LBB5_119:                              # %_ZZ4mainENK3$_0clEv.exit.us.i.i
+.LBB5_115:                              # %_ZZ4mainENK3$_0clEv.exit.us.i.i
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_118 Depth=2
+                                        #     Parent Loop BB5_114 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
 	movl	$0, _ZL13render_output(%rip)
 	incl	%r12d
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	jl	.LBB5_119
-.LBB5_123:                              # %.us-lcssa.us.i.i
-                                        #   in Loop: Header=BB5_118 Depth=2
+	jl	.LBB5_115
+.LBB5_119:                              # %.us-lcssa.us.i.i
+                                        #   in Loop: Header=BB5_114 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%r12d, %xmm1
 	divsd	%xmm1, %xmm0
-	movq	128(%rsp), %rax         # 8-byte Reload
-	movsd	%xmm0, 200(%rsp,%rax,8)
-	incq	%rax
-	cmpq	$10, %rax
-	jne	.LBB5_118
-# BB#124:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	movsd	%xmm0, 216(%rsp,%r13,8)
+	incq	%r13
+	cmpq	$10, %r13
+	jne	.LBB5_114
+# BB#120:                               #   in Loop: Header=BB5_9 Depth=1
+	leaq	216(%rsp), %r13
+	movq	%r13, %r12
+	leaq	224(%rsp), %rbx
+	leaq	296(%rsp), %rsi
 	.align	16, 0x90
-.LBB5_125:                              # %.preheader472
+.LBB5_121:                              # %.preheader482
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_144 Depth 3
+                                        #       Child Loop BB5_132 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_143
-# BB#126:                               #   in Loop: Header=BB5_125 Depth=2
+	jbe	.LBB5_131
+# BB#122:                               #   in Loop: Header=BB5_121 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%r13, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
-	je	.LBB5_128
-# BB#127:                               #   in Loop: Header=BB5_125 Depth=2
+	je	.LBB5_124
+# BB#123:                               #   in Loop: Header=BB5_121 Depth=2
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 128(%rsp)        # 8-byte Spill
+	movq	%r13, %rsi
+	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	128(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_128:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i
-                                        #   in Loop: Header=BB5_125 Depth=2
-	movsd	%xmm1, 200(%rsp)
-	jmp	.LBB5_129
+	movsd	144(%rsp), %xmm1        # 8-byte Reload
+	leaq	296(%rsp), %rsi
+.LBB5_124:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i
+                                        #   in Loop: Header=BB5_121 Depth=2
+	movsd	%xmm1, 216(%rsp)
+	jmp	.LBB5_125
 	.align	16, 0x90
-.LBB5_143:                              #   in Loop: Header=BB5_125 Depth=2
+.LBB5_131:                              #   in Loop: Header=BB5_121 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_145
+	jbe	.LBB5_133
 	.align	16, 0x90
-.LBB5_144:                              # %.lr.ph.i.i10.i.i.i
+.LBB5_132:                              # %.lr.ph.i.i10.i.i.i
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_125 Depth=2
+                                        #     Parent Loop BB5_121 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
 	movsd	%xmm0, (%rax)
 	movsd	-16(%rax), %xmm0
@@ -1013,40 +962,40 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_144
-.LBB5_145:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i
-                                        #   in Loop: Header=BB5_125 Depth=2
+	ja	.LBB5_132
+.LBB5_133:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i
+                                        #   in Loop: Header=BB5_121 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_129:                              # %.backedge.i7.i.i.i
-                                        #   in Loop: Header=BB5_125 Depth=2
+.LBB5_125:                              # %.backedge.i7.i.i.i
+                                        #   in Loop: Header=BB5_121 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
 	cmpq	%rsi, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
-	jne	.LBB5_125
-# BB#130:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+	jne	.LBB5_121
+# BB#126:                               #   in Loop: Header=BB5_9 Depth=1
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
 	movd	%r14, %xmm1
 	punpckldq	.LCPI5_2(%rip), %xmm1 # xmm1 = xmm1[0],mem[0],xmm1[1],mem[1]
 	subpd	.LCPI5_3(%rip), %xmm1
 	pshufd	$78, %xmm1, %xmm2       # xmm2 = xmm1[2,3,0,1]
 	addpd	%xmm1, %xmm2
-	movapd	%xmm2, 112(%rsp)        # 16-byte Spill
+	movapd	%xmm2, 128(%rsp)        # 16-byte Spill
 	divsd	%xmm2, %xmm0
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp34:
 	movl	$_ZSt4cout, %edi
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp35:
-# BB#131:                               # %_ZNSolsEd.exit
+# BB#127:                               # %_ZNSolsEd.exit
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp36:
 	movl	$.L.str2, %esi
@@ -1054,39 +1003,49 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp37:
-# BB#132:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit79
+# BB#128:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit74
                                         #   in Loop: Header=BB5_9 Depth=1
 	xorl	%r12d, %r12d
 	.align	16, 0x90
-.LBB5_133:                              #   Parent Loop BB5_9 Depth=1
+.LBB5_129:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
                                         #       Child Loop BB5_134 Depth 3
                                         #         Child Loop BB5_135 Depth 4
+                                        #       Child Loop BB5_130 Depth 3
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
+	testq	%r14, %r14
+	je	.LBB5_130
 	.align	16, 0x90
 .LBB5_134:                              # %.lr.ph.i.i.i.preheader.i
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_133 Depth=2
+                                        #     Parent Loop BB5_129 Depth=2
                                         # =>    This Loop Header: Depth=3
                                         #         Child Loop BB5_135 Depth 4
 	movl	$0, _ZL13render_output(%rip)
-	movl	$1, %eax
+	movq	%r14, %rax
 	xorl	%ecx, %ecx
+	movq	160(%rsp), %rdx         # 8-byte Reload
+	movq	%r15, %rsi
+	movq	%r15, %r13
+	movq	%rbp, %rdi
+	movq	%rbp, %r15
 	.align	16, 0x90
-.LBB5_135:                              # %.lr.ph.i.i.i.i83
+.LBB5_135:                              # %.lr.ph.i.i.i.i78
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_133 Depth=2
+                                        #     Parent Loop BB5_129 Depth=2
                                         #       Parent Loop BB5_134 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
-	movsbl	-1(%rbp,%rax), %edx
-	addl	-4(%r15,%rax,4), %ecx
-	addl	-4(%r13,%rax,4), %ecx
-	addl	%edx, %ecx
+	movsbl	(%rdi), %ebp
+	incq	%rdi
+	addl	(%rsi), %ecx
+	addq	$4, %rsi
+	addl	(%rdx), %ecx
+	addq	$4, %rdx
+	addl	%ebp, %ecx
 	movl	%ecx, _ZL13render_output(%rip)
-	incq	%rax
-	cmpq	%rax, %r14
+	decq	%rax
 	jne	.LBB5_135
 # BB#136:                               # %_ZZ4mainENK3$_1clEv.exit.i.i
                                         #   in Loop: Header=BB5_134 Depth=3
@@ -1094,34 +1053,49 @@ main:                                   # @main
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
+	movq	%r15, %rbp
+	movq	%r13, %r15
 	jl	.LBB5_134
-# BB#137:                               # %.us-lcssa.us.i
-                                        #   in Loop: Header=BB5_133 Depth=2
+	jmp	.LBB5_137
+	.align	16, 0x90
+.LBB5_130:                              # %_ZZ4mainENK3$_1clEv.exit.i.us.i
+                                        #   Parent Loop BB5_9 Depth=1
+                                        #     Parent Loop BB5_129 Depth=2
+                                        # =>    This Inner Loop Header: Depth=3
+	movl	$0, _ZL13render_output(%rip)
+	incl	%ebx
+	callq	_ZNSt6chrono3_V212system_clock3nowEv
+	subq	measure_start(%rip), %rax
+	cmpq	$200000000, %rax        # imm = 0xBEBC200
+	jl	.LBB5_130
+.LBB5_137:                              # %.us-lcssa.us.i
+                                        #   in Loop: Header=BB5_129 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movsd	%xmm0, 200(%rsp,%r12,8)
+	movsd	%xmm0, 216(%rsp,%r12,8)
 	incq	%r12
 	cmpq	$10, %r12
-	jne	.LBB5_133
+	jne	.LBB5_129
 # BB#138:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	leaq	216(%rsp), %rsi
+	movq	%rsi, %r12
+	leaq	224(%rsp), %rbx
+	leaq	296(%rsp), %r13
+	movq	%r13, %rdi
 	.align	16, 0x90
-.LBB5_139:                              # %.preheader471
+.LBB5_139:                              # %.preheader481
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_147 Depth 3
+                                        #       Child Loop BB5_158 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_146
+	jbe	.LBB5_157
 # BB#140:                               #   in Loop: Header=BB5_139 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%rsi, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
 	je	.LBB5_142
@@ -1129,25 +1103,26 @@ main:                                   # @main
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 128(%rsp)        # 8-byte Spill
+	movq	%rsi, %r13
+                                        # kill: RSI<def> R13<kill>
+	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	128(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_142:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i90
+	movsd	144(%rsp), %xmm1        # 8-byte Reload
+	leaq	296(%rsp), %rdi
+	movq	%r13, %rsi
+.LBB5_142:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i85
                                         #   in Loop: Header=BB5_139 Depth=2
-	movsd	%xmm1, 200(%rsp)
-	jmp	.LBB5_149
+	movsd	%xmm1, 216(%rsp)
+	jmp	.LBB5_143
 	.align	16, 0x90
-.LBB5_146:                              #   in Loop: Header=BB5_139 Depth=2
+.LBB5_157:                              #   in Loop: Header=BB5_139 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_148
+	jbe	.LBB5_159
 	.align	16, 0x90
-.LBB5_147:                              # %.lr.ph.i.i10.i.i.i95
+.LBB5_158:                              # %.lr.ph.i.i10.i.i.i90
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_139 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
@@ -1158,34 +1133,34 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_147
-.LBB5_148:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i97
+	ja	.LBB5_158
+.LBB5_159:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i92
                                         #   in Loop: Header=BB5_139 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_149:                              # %.backedge.i7.i.i.i92
+.LBB5_143:                              # %.backedge.i7.i.i.i87
                                         #   in Loop: Header=BB5_139 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
-	cmpq	%rsi, %rax
+	cmpq	%rdi, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
 	jne	.LBB5_139
-# BB#150:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+# BB#144:                               #   in Loop: Header=BB5_9 Depth=1
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp38:
 	movl	$_ZSt4cout, %edi
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp39:
-# BB#151:                               # %_ZNSolsEd.exit99
+# BB#145:                               # %_ZNSolsEd.exit94
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp40:
 	movl	$.L.str2, %esi
@@ -1193,111 +1168,113 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp41:
-# BB#152:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit101
+# BB#146:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit96
                                         #   in Loop: Header=BB5_9 Depth=1
-	xorl	%eax, %eax
+	xorl	%r12d, %r12d
 	.align	16, 0x90
-.LBB5_153:                              #   Parent Loop BB5_9 Depth=1
+.LBB5_147:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_154 Depth 3
-                                        #         Child Loop BB5_155 Depth 4
-	movq	%rax, 128(%rsp)         # 8-byte Spill
+                                        #       Child Loop BB5_148 Depth 3
+                                        #         Child Loop BB5_149 Depth 4
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
 	.align	16, 0x90
-.LBB5_154:                              #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_153 Depth=2
+.LBB5_148:                              #   Parent Loop BB5_9 Depth=1
+                                        #     Parent Loop BB5_147 Depth=2
                                         # =>    This Loop Header: Depth=3
-                                        #         Child Loop BB5_155 Depth 4
+                                        #         Child Loop BB5_149 Depth 4
 	testq	%r14, %r14
 	movl	$0, _ZL13render_output(%rip)
-	movq	%r14, %rax
-	movl	$0, %ecx
-	movq	%r13, %rdx
-	movq	%r15, %rsi
-	movq	%rbp, %rdi
-	movq	%rbp, %r12
-	je	.LBB5_156
+	movq	%r15, %rax
+	movq	%r15, %r13
+	movq	160(%rsp), %rcx         # 8-byte Reload
+	movq	%rbp, %rdx
+	movq	%rbp, %r15
+	movq	%r14, %rsi
+	movl	$0, %edi
+	je	.LBB5_150
 	.align	16, 0x90
-.LBB5_155:                              # %.lr.ph.i.i.i.i105
+.LBB5_149:                              # %.lr.ph.i.i.i.i100
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_153 Depth=2
-                                        #       Parent Loop BB5_154 Depth=3
+                                        #     Parent Loop BB5_147 Depth=2
+                                        #       Parent Loop BB5_148 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
-	movsbl	(%rdi), %ebp
-	incq	%rdi
-	addl	(%rsi), %ecx
-	addq	$4, %rsi
-	addl	(%rdx), %ecx
-	addq	$4, %rdx
-	addl	%ebp, %ecx
-	movl	%ecx, _ZL13render_output(%rip)
-	decq	%rax
-	jne	.LBB5_155
-.LBB5_156:                              # %_ZZ4mainENK3$_2clEv.exit.i.i
-                                        #   in Loop: Header=BB5_154 Depth=3
+	movsbl	(%rdx), %ebp
+	addl	(%rax), %edi
+	addl	(%rcx), %edi
+	addl	%ebp, %edi
+	movl	%edi, _ZL13render_output(%rip)
+	incq	%rdx
+	addq	$4, %rcx
+	addq	$4, %rax
+	decq	%rsi
+	jne	.LBB5_149
+.LBB5_150:                              # %_ZZ4mainENK3$_2clEv.exit.i.i
+                                        #   in Loop: Header=BB5_148 Depth=3
 	incl	%ebx
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	movq	%r12, %rbp
-	jl	.LBB5_154
-# BB#157:                               #   in Loop: Header=BB5_153 Depth=2
+	movq	%r15, %rbp
+	movq	%r13, %r15
+	jl	.LBB5_148
+# BB#151:                               #   in Loop: Header=BB5_147 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movq	128(%rsp), %rax         # 8-byte Reload
-	movsd	%xmm0, 200(%rsp,%rax,8)
-	incq	%rax
-	cmpq	$10, %rax
-	jne	.LBB5_153
-# BB#158:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	movsd	%xmm0, 216(%rsp,%r12,8)
+	incq	%r12
+	cmpq	$10, %r12
+	jne	.LBB5_147
+# BB#152:                               #   in Loop: Header=BB5_9 Depth=1
+	leaq	216(%rsp), %rsi
+	movq	%rsi, %r12
+	leaq	224(%rsp), %rbx
+	leaq	296(%rsp), %r13
+	movq	%r13, %rdi
 	.align	16, 0x90
-.LBB5_159:                              # %.preheader470
+.LBB5_153:                              # %.preheader480
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_178 Depth 3
+                                        #       Child Loop BB5_161 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_177
-# BB#160:                               #   in Loop: Header=BB5_159 Depth=2
+	jbe	.LBB5_160
+# BB#154:                               #   in Loop: Header=BB5_153 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%rsi, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
-	je	.LBB5_162
-# BB#161:                               #   in Loop: Header=BB5_159 Depth=2
+	je	.LBB5_156
+# BB#155:                               #   in Loop: Header=BB5_153 Depth=2
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 128(%rsp)        # 8-byte Spill
+	movq	%rsi, %r13
+                                        # kill: RSI<def> R13<kill>
+	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	128(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_162:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i112
-                                        #   in Loop: Header=BB5_159 Depth=2
-	movsd	%xmm1, 200(%rsp)
+	movsd	144(%rsp), %xmm1        # 8-byte Reload
+	leaq	296(%rsp), %rdi
+	movq	%r13, %rsi
+.LBB5_156:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i107
+                                        #   in Loop: Header=BB5_153 Depth=2
+	movsd	%xmm1, 216(%rsp)
 	jmp	.LBB5_163
 	.align	16, 0x90
-.LBB5_177:                              #   in Loop: Header=BB5_159 Depth=2
+.LBB5_160:                              #   in Loop: Header=BB5_153 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_179
+	jbe	.LBB5_162
 	.align	16, 0x90
-.LBB5_178:                              # %.lr.ph.i.i10.i.i.i117
+.LBB5_161:                              # %.lr.ph.i.i10.i.i.i112
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_159 Depth=2
+                                        #     Parent Loop BB5_153 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
 	movsd	%xmm0, (%rax)
 	movsd	-16(%rax), %xmm0
@@ -1306,34 +1283,34 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_178
-.LBB5_179:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i119
-                                        #   in Loop: Header=BB5_159 Depth=2
+	ja	.LBB5_161
+.LBB5_162:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i114
+                                        #   in Loop: Header=BB5_153 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_163:                              # %.backedge.i7.i.i.i114
-                                        #   in Loop: Header=BB5_159 Depth=2
+.LBB5_163:                              # %.backedge.i7.i.i.i109
+                                        #   in Loop: Header=BB5_153 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
-	cmpq	%rsi, %rax
+	cmpq	%rdi, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
-	jne	.LBB5_159
+	jne	.LBB5_153
 # BB#164:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp42:
 	movl	$_ZSt4cout, %edi
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp43:
-# BB#165:                               # %_ZNSolsEd.exit121
+# BB#165:                               # %_ZNSolsEd.exit116
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp44:
 	movl	$.L.str2, %esi
@@ -1341,15 +1318,14 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp45:
-# BB#166:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit123
+# BB#166:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit118
                                         #   in Loop: Header=BB5_9 Depth=1
-	xorl	%eax, %eax
+	xorl	%r12d, %r12d
 	.align	16, 0x90
 .LBB5_167:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
                                         #       Child Loop BB5_168 Depth 3
                                         #         Child Loop BB5_169 Depth 4
-	movq	%rax, 128(%rsp)         # 8-byte Spill
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
@@ -1360,28 +1336,29 @@ main:                                   # @main
                                         #         Child Loop BB5_169 Depth 4
 	testq	%r14, %r14
 	movl	$0, _ZL13render_output(%rip)
-	movq	%r14, %rax
-	movl	$0, %ecx
-	movq	%r13, %rdx
-	movq	%r15, %rsi
-	movq	%rbp, %rdi
-	movq	%rbp, %r12
+	movq	%r15, %rax
+	movq	%r15, %r13
+	movq	160(%rsp), %rcx         # 8-byte Reload
+	movq	%rbp, %rdx
+	movq	%rbp, %r15
+	movq	%r14, %rsi
+	movl	$0, %edi
 	je	.LBB5_170
 	.align	16, 0x90
-.LBB5_169:                              # %.lr.ph.i.i.i.i127
+.LBB5_169:                              # %.lr.ph.i.i.i.i122
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_167 Depth=2
                                         #       Parent Loop BB5_168 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
-	movsbl	(%rdi), %ebp
-	incq	%rdi
-	addl	(%rsi), %ecx
-	addq	$4, %rsi
-	addl	(%rdx), %ecx
-	addq	$4, %rdx
-	addl	%ebp, %ecx
-	movl	%ecx, _ZL13render_output(%rip)
-	decq	%rax
+	movsbl	(%rdx), %ebp
+	addl	(%rax), %edi
+	addl	(%rcx), %edi
+	addl	%ebp, %edi
+	movl	%edi, _ZL13render_output(%rip)
+	incq	%rdx
+	addq	$4, %rcx
+	addq	$4, %rax
+	decq	%rsi
 	jne	.LBB5_169
 .LBB5_170:                              # %_ZZ4mainENK3$_3clEv.exit.i.i
                                         #   in Loop: Header=BB5_168 Depth=3
@@ -1389,35 +1366,36 @@ main:                                   # @main
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	movq	%r12, %rbp
+	movq	%r15, %rbp
+	movq	%r13, %r15
 	jl	.LBB5_168
 # BB#171:                               #   in Loop: Header=BB5_167 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movq	128(%rsp), %rax         # 8-byte Reload
-	movsd	%xmm0, 200(%rsp,%rax,8)
-	incq	%rax
-	cmpq	$10, %rax
+	movsd	%xmm0, 216(%rsp,%r12,8)
+	incq	%r12
+	cmpq	$10, %r12
 	jne	.LBB5_167
 # BB#172:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	leaq	216(%rsp), %rsi
+	movq	%rsi, %r12
+	leaq	224(%rsp), %rbx
+	leaq	296(%rsp), %r13
+	movq	%r13, %rdi
 	.align	16, 0x90
-.LBB5_173:                              # %.preheader469
+.LBB5_173:                              # %.preheader479
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_181 Depth 3
+                                        #       Child Loop BB5_192 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_180
+	jbe	.LBB5_191
 # BB#174:                               #   in Loop: Header=BB5_173 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%rsi, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
 	je	.LBB5_176
@@ -1425,25 +1403,26 @@ main:                                   # @main
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 128(%rsp)        # 8-byte Spill
+	movq	%rsi, %r13
+                                        # kill: RSI<def> R13<kill>
+	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	128(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_176:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i134
+	movsd	144(%rsp), %xmm1        # 8-byte Reload
+	leaq	296(%rsp), %rdi
+	movq	%r13, %rsi
+.LBB5_176:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i129
                                         #   in Loop: Header=BB5_173 Depth=2
-	movsd	%xmm1, 200(%rsp)
-	jmp	.LBB5_183
+	movsd	%xmm1, 216(%rsp)
+	jmp	.LBB5_177
 	.align	16, 0x90
-.LBB5_180:                              #   in Loop: Header=BB5_173 Depth=2
+.LBB5_191:                              #   in Loop: Header=BB5_173 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_182
+	jbe	.LBB5_193
 	.align	16, 0x90
-.LBB5_181:                              # %.lr.ph.i.i10.i.i.i139
+.LBB5_192:                              # %.lr.ph.i.i10.i.i.i134
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_173 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
@@ -1454,34 +1433,35 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_181
-.LBB5_182:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i141
+	ja	.LBB5_192
+.LBB5_193:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i136
                                         #   in Loop: Header=BB5_173 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_183:                              # %.backedge.i7.i.i.i136
+.LBB5_177:                              # %.backedge.i7.i.i.i131
                                         #   in Loop: Header=BB5_173 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
-	cmpq	%rsi, %rax
+	cmpq	%rdi, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
 	jne	.LBB5_173
-# BB#184:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+# BB#178:                               #   in Loop: Header=BB5_9 Depth=1
+	movq	%rsi, %r13
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp46:
 	movl	$_ZSt4cout, %edi
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp47:
-# BB#185:                               # %_ZNSolsEd.exit143
+# BB#179:                               # %_ZNSolsEd.exit138
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp48:
 	movl	$.L.str2, %esi
@@ -1489,34 +1469,34 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp49:
-# BB#186:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit145
+# BB#180:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit140
                                         #   in Loop: Header=BB5_9 Depth=1
-	addq	$8, 144(%rsp)           # 8-byte Folded Spill
+	addq	$8, 152(%rsp)           # 8-byte Folded Spill
 	xorl	%r12d, %r12d
 	.align	16, 0x90
-.LBB5_187:                              #   Parent Loop BB5_9 Depth=1
+.LBB5_181:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_188 Depth 3
-                                        #         Child Loop BB5_189 Depth 4
+                                        #       Child Loop BB5_182 Depth 3
+                                        #         Child Loop BB5_183 Depth 4
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
 	.align	16, 0x90
-.LBB5_188:                              #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_187 Depth=2
+.LBB5_182:                              #   Parent Loop BB5_9 Depth=1
+                                        #     Parent Loop BB5_181 Depth=2
                                         # =>    This Loop Header: Depth=3
-                                        #         Child Loop BB5_189 Depth 4
+                                        #         Child Loop BB5_183 Depth 4
 	testq	%r14, %r14
 	movl	$0, _ZL13render_output(%rip)
-	movq	144(%rsp), %rax         # 8-byte Reload
+	movq	152(%rsp), %rax         # 8-byte Reload
 	movq	%r14, %rcx
 	movl	$0, %edx
-	je	.LBB5_190
+	je	.LBB5_184
 	.align	16, 0x90
-.LBB5_189:                              # %.lr.ph.i.i.i.i149
+.LBB5_183:                              # %.lr.ph.i.i.i.i144
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_187 Depth=2
-                                        #       Parent Loop BB5_188 Depth=3
+                                        #     Parent Loop BB5_181 Depth=2
+                                        #       Parent Loop BB5_182 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
 	movsbl	-8(%rax), %esi
 	addl	-4(%rax), %edx
@@ -1525,68 +1505,66 @@ main:                                   # @main
 	movl	%edx, _ZL13render_output(%rip)
 	addq	$20, %rax
 	decq	%rcx
-	jne	.LBB5_189
-.LBB5_190:                              # %_ZZ4mainENK3$_4clEv.exit.i.i
-                                        #   in Loop: Header=BB5_188 Depth=3
+	jne	.LBB5_183
+.LBB5_184:                              # %_ZZ4mainENK3$_4clEv.exit.i.i
+                                        #   in Loop: Header=BB5_182 Depth=3
 	incl	%ebx
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	jl	.LBB5_188
-# BB#191:                               #   in Loop: Header=BB5_187 Depth=2
+	jl	.LBB5_182
+# BB#185:                               #   in Loop: Header=BB5_181 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movsd	%xmm0, 200(%rsp,%r12,8)
+	movsd	%xmm0, 216(%rsp,%r12,8)
 	incq	%r12
 	cmpq	$10, %r12
-	jne	.LBB5_187
-# BB#192:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	jne	.LBB5_181
+# BB#186:                               #   in Loop: Header=BB5_9 Depth=1
+	movq	%r13, %r12
+	leaq	224(%rsp), %rbx
+	leaq	296(%rsp), %rsi
 	.align	16, 0x90
-.LBB5_193:                              # %.preheader468
+.LBB5_187:                              # %.preheader478
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_212 Depth 3
+                                        #       Child Loop BB5_195 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_211
-# BB#194:                               #   in Loop: Header=BB5_193 Depth=2
+	jbe	.LBB5_194
+# BB#188:                               #   in Loop: Header=BB5_187 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%r13, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
-	je	.LBB5_196
-# BB#195:                               #   in Loop: Header=BB5_193 Depth=2
+	je	.LBB5_190
+# BB#189:                               #   in Loop: Header=BB5_187 Depth=2
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
+	movq	%r13, %rsi
+	movsd	%xmm1, 152(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	144(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_196:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i156
-                                        #   in Loop: Header=BB5_193 Depth=2
-	movsd	%xmm1, 200(%rsp)
+	movsd	152(%rsp), %xmm1        # 8-byte Reload
+	leaq	296(%rsp), %rsi
+.LBB5_190:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i151
+                                        #   in Loop: Header=BB5_187 Depth=2
+	movsd	%xmm1, 216(%rsp)
 	jmp	.LBB5_197
 	.align	16, 0x90
-.LBB5_211:                              #   in Loop: Header=BB5_193 Depth=2
+.LBB5_194:                              #   in Loop: Header=BB5_187 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_213
+	jbe	.LBB5_196
 	.align	16, 0x90
-.LBB5_212:                              # %.lr.ph.i.i10.i.i.i161
+.LBB5_195:                              # %.lr.ph.i.i10.i.i.i156
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_193 Depth=2
+                                        #     Parent Loop BB5_187 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
 	movsd	%xmm0, (%rax)
 	movsd	-16(%rax), %xmm0
@@ -1595,34 +1573,34 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_212
-.LBB5_213:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i163
-                                        #   in Loop: Header=BB5_193 Depth=2
+	ja	.LBB5_195
+.LBB5_196:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i158
+                                        #   in Loop: Header=BB5_187 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_197:                              # %.backedge.i7.i.i.i158
-                                        #   in Loop: Header=BB5_193 Depth=2
+.LBB5_197:                              # %.backedge.i7.i.i.i153
+                                        #   in Loop: Header=BB5_187 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
 	cmpq	%rsi, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
-	jne	.LBB5_193
+	jne	.LBB5_187
 # BB#198:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp50:
 	movl	$_ZSt4cout, %edi
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp51:
-# BB#199:                               # %_ZNSolsEd.exit165
+# BB#199:                               # %_ZNSolsEd.exit160
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp52:
 	movl	$.L.str2, %esi
@@ -1630,15 +1608,14 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp53:
-# BB#200:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit167
+# BB#200:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit162
                                         #   in Loop: Header=BB5_9 Depth=1
-	xorl	%eax, %eax
+	xorl	%r12d, %r12d
 	.align	16, 0x90
 .LBB5_201:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
                                         #       Child Loop BB5_202 Depth 3
                                         #         Child Loop BB5_203 Depth 4
-	movq	%rax, 144(%rsp)         # 8-byte Spill
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
@@ -1650,14 +1627,15 @@ main:                                   # @main
 	testq	%r14, %r14
 	movl	$0, _ZL13render_output(%rip)
 	movq	%r15, %rax
-	movq	%r13, %rcx
+	movq	%r15, %r13
+	movq	160(%rsp), %rcx         # 8-byte Reload
 	movq	%rbp, %rdx
-	movq	%rbp, %r12
+	movq	%rbp, %r15
 	movq	%r14, %rsi
 	movl	$0, %edi
 	je	.LBB5_204
 	.align	16, 0x90
-.LBB5_203:                              # %.lr.ph.i.i.i.i173
+.LBB5_203:                              # %.lr.ph.i.i.i.i168
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_201 Depth=2
                                         #       Parent Loop BB5_202 Depth=3
@@ -1678,35 +1656,36 @@ main:                                   # @main
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	movq	%r12, %rbp
+	movq	%r15, %rbp
+	movq	%r13, %r15
 	jl	.LBB5_202
 # BB#205:                               #   in Loop: Header=BB5_201 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movq	144(%rsp), %rax         # 8-byte Reload
-	movsd	%xmm0, 200(%rsp,%rax,8)
-	incq	%rax
-	cmpq	$10, %rax
+	movsd	%xmm0, 216(%rsp,%r12,8)
+	incq	%r12
+	cmpq	$10, %r12
 	jne	.LBB5_201
 # BB#206:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	leaq	216(%rsp), %rsi
+	movq	%rsi, %r12
+	leaq	224(%rsp), %rbx
+	leaq	296(%rsp), %r13
+	movq	%r13, %rdi
 	.align	16, 0x90
-.LBB5_207:                              # %.preheader467
+.LBB5_207:                              # %.preheader477
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_215 Depth 3
+                                        #       Child Loop BB5_226 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_214
+	jbe	.LBB5_225
 # BB#208:                               #   in Loop: Header=BB5_207 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%rsi, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
 	je	.LBB5_210
@@ -1714,25 +1693,26 @@ main:                                   # @main
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
+	movq	%rsi, %r13
+                                        # kill: RSI<def> R13<kill>
+	movsd	%xmm1, 152(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	144(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_210:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i180
+	movsd	152(%rsp), %xmm1        # 8-byte Reload
+	leaq	296(%rsp), %rdi
+	movq	%r13, %rsi
+.LBB5_210:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i175
                                         #   in Loop: Header=BB5_207 Depth=2
-	movsd	%xmm1, 200(%rsp)
-	jmp	.LBB5_217
+	movsd	%xmm1, 216(%rsp)
+	jmp	.LBB5_211
 	.align	16, 0x90
-.LBB5_214:                              #   in Loop: Header=BB5_207 Depth=2
+.LBB5_225:                              #   in Loop: Header=BB5_207 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_216
+	jbe	.LBB5_227
 	.align	16, 0x90
-.LBB5_215:                              # %.lr.ph.i.i10.i.i.i185
+.LBB5_226:                              # %.lr.ph.i.i10.i.i.i180
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_207 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
@@ -1743,34 +1723,34 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_215
-.LBB5_216:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i187
+	ja	.LBB5_226
+.LBB5_227:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i182
                                         #   in Loop: Header=BB5_207 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_217:                              # %.backedge.i7.i.i.i182
+.LBB5_211:                              # %.backedge.i7.i.i.i177
                                         #   in Loop: Header=BB5_207 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
-	cmpq	%rsi, %rax
+	cmpq	%rdi, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
 	jne	.LBB5_207
-# BB#218:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+# BB#212:                               #   in Loop: Header=BB5_9 Depth=1
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp54:
 	movl	$_ZSt4cout, %edi
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp55:
-# BB#219:                               # %_ZNSolsEd.exit189
+# BB#213:                               # %_ZNSolsEd.exit184
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp56:
 	movl	$.L.str2, %esi
@@ -1778,111 +1758,107 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp57:
-# BB#220:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit191
+# BB#214:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit186
                                         #   in Loop: Header=BB5_9 Depth=1
-	xorl	%eax, %eax
+	movq	%r15, %r13
+	xorl	%r12d, %r12d
 	.align	16, 0x90
-.LBB5_221:                              #   Parent Loop BB5_9 Depth=1
+.LBB5_215:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_222 Depth 3
-                                        #         Child Loop BB5_223 Depth 4
-	movq	%rax, 144(%rsp)         # 8-byte Spill
+                                        #       Child Loop BB5_216 Depth 3
+                                        #         Child Loop BB5_217 Depth 4
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
 	.align	16, 0x90
-.LBB5_222:                              #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_221 Depth=2
+.LBB5_216:                              #   Parent Loop BB5_9 Depth=1
+                                        #     Parent Loop BB5_215 Depth=2
                                         # =>    This Loop Header: Depth=3
-                                        #         Child Loop BB5_223 Depth 4
+                                        #         Child Loop BB5_217 Depth 4
 	testq	%r14, %r14
 	movl	$0, _ZL13render_output(%rip)
-	movq	%rbp, %rax
-	movq	%rbp, %r12
-	movq	%r15, %rcx
-	movq	%r13, %rdx
-	movq	%r14, %rsi
+	movq	%r14, %rax
+	movq	%rbp, %rcx
+	movq	%rbp, %r15
+	movq	160(%rsp), %rdx         # 8-byte Reload
+	movq	%r13, %rsi
 	movl	$0, %edi
-	je	.LBB5_224
+	je	.LBB5_218
 	.align	16, 0x90
-.LBB5_223:                              # %.lr.ph.i.i.i.i197
+.LBB5_217:                              # %.lr.ph.i.i.i.i192
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_221 Depth=2
-                                        #       Parent Loop BB5_222 Depth=3
+                                        #     Parent Loop BB5_215 Depth=2
+                                        #       Parent Loop BB5_216 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
-	movsbl	(%rax), %ebp
-	addl	(%rcx), %edi
+	movsbl	(%rcx), %ebp
+	addl	(%rsi), %edi
 	addl	(%rdx), %edi
 	addl	%ebp, %edi
 	movl	%edi, _ZL13render_output(%rip)
+	addq	$4, %rsi
 	addq	$4, %rdx
-	addq	$4, %rcx
-	incq	%rax
-	decq	%rsi
-	jne	.LBB5_223
-.LBB5_224:                              # %_ZZ4mainENK3$_6clEv.exit.i.i
-                                        #   in Loop: Header=BB5_222 Depth=3
+	incq	%rcx
+	decq	%rax
+	jne	.LBB5_217
+.LBB5_218:                              # %_ZZ4mainENK3$_6clEv.exit.i.i
+                                        #   in Loop: Header=BB5_216 Depth=3
 	incl	%ebx
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	movq	%r12, %rbp
-	jl	.LBB5_222
-# BB#225:                               #   in Loop: Header=BB5_221 Depth=2
+	movq	%r15, %rbp
+	jl	.LBB5_216
+# BB#219:                               #   in Loop: Header=BB5_215 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movq	144(%rsp), %rax         # 8-byte Reload
-	movsd	%xmm0, 200(%rsp,%rax,8)
-	incq	%rax
-	cmpq	$10, %rax
-	jne	.LBB5_221
-# BB#226:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	movsd	%xmm0, 216(%rsp,%r12,8)
+	incq	%r12
+	cmpq	$10, %r12
+	jne	.LBB5_215
+# BB#220:                               #   in Loop: Header=BB5_9 Depth=1
+	leaq	216(%rsp), %r15
+	movq	%r15, %r12
+	leaq	224(%rsp), %rbx
 	.align	16, 0x90
-.LBB5_227:                              # %.preheader466
+.LBB5_221:                              # %.preheader476
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_246 Depth 3
+                                        #       Child Loop BB5_229 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_245
-# BB#228:                               #   in Loop: Header=BB5_227 Depth=2
+	jbe	.LBB5_228
+# BB#222:                               #   in Loop: Header=BB5_221 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%r15, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
-	je	.LBB5_230
-# BB#229:                               #   in Loop: Header=BB5_227 Depth=2
+	je	.LBB5_224
+# BB#223:                               #   in Loop: Header=BB5_221 Depth=2
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
+	movq	%r15, %rsi
+	movsd	%xmm1, 152(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	144(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_230:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i204
-                                        #   in Loop: Header=BB5_227 Depth=2
-	movsd	%xmm1, 200(%rsp)
+	movsd	152(%rsp), %xmm1        # 8-byte Reload
+.LBB5_224:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i199
+                                        #   in Loop: Header=BB5_221 Depth=2
+	movsd	%xmm1, 216(%rsp)
 	jmp	.LBB5_231
 	.align	16, 0x90
-.LBB5_245:                              #   in Loop: Header=BB5_227 Depth=2
+.LBB5_228:                              #   in Loop: Header=BB5_221 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_247
+	jbe	.LBB5_230
 	.align	16, 0x90
-.LBB5_246:                              # %.lr.ph.i.i10.i.i.i209
+.LBB5_229:                              # %.lr.ph.i.i10.i.i.i204
                                         #   Parent Loop BB5_9 Depth=1
-                                        #     Parent Loop BB5_227 Depth=2
+                                        #     Parent Loop BB5_221 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
 	movsd	%xmm0, (%rax)
 	movsd	-16(%rax), %xmm0
@@ -1891,34 +1867,36 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_246
-.LBB5_247:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i211
-                                        #   in Loop: Header=BB5_227 Depth=2
+	ja	.LBB5_229
+.LBB5_230:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i206
+                                        #   in Loop: Header=BB5_221 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_231:                              # %.backedge.i7.i.i.i206
-                                        #   in Loop: Header=BB5_227 Depth=2
+.LBB5_231:                              # %.backedge.i7.i.i.i201
+                                        #   in Loop: Header=BB5_221 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
-	cmpq	%rsi, %rax
+	leaq	296(%rsp), %rcx
+	cmpq	%rcx, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
-	jne	.LBB5_227
+	jne	.LBB5_221
 # BB#232:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp58:
 	movl	$_ZSt4cout, %edi
+	movq	%r13, %r15
 	callq	_ZNSo9_M_insertIdEERSoT_
 .Ltmp59:
-# BB#233:                               # %_ZNSolsEd.exit213
+# BB#233:                               # %_ZNSolsEd.exit208
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp60:
 	movl	$.L.str2, %esi
@@ -1926,15 +1904,15 @@ main:                                   # @main
 	movq	%rax, %rdi
 	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 .Ltmp61:
-# BB#234:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit215
+# BB#234:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit210
                                         #   in Loop: Header=BB5_9 Depth=1
-	xorl	%eax, %eax
+	movq	%r15, %r13
+	xorl	%r12d, %r12d
 	.align	16, 0x90
 .LBB5_235:                              #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
                                         #       Child Loop BB5_236 Depth 3
                                         #         Child Loop BB5_237 Depth 4
-	movq	%rax, 144(%rsp)         # 8-byte Spill
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	movq	%rax, measure_start(%rip)
 	xorl	%ebx, %ebx
@@ -1945,28 +1923,28 @@ main:                                   # @main
                                         #         Child Loop BB5_237 Depth 4
 	testq	%r14, %r14
 	movl	$0, _ZL13render_output(%rip)
-	movq	%rbp, %rax
-	movq	%rbp, %r12
-	movq	%r15, %rcx
-	movq	%r13, %rdx
-	movq	%r14, %rsi
+	movq	%r14, %rax
+	movq	%rbp, %rcx
+	movq	%rbp, %r15
+	movq	160(%rsp), %rdx         # 8-byte Reload
+	movq	%r13, %rsi
 	movl	$0, %edi
 	je	.LBB5_238
 	.align	16, 0x90
-.LBB5_237:                              # %.lr.ph.i.i.i.i221
+.LBB5_237:                              # %.lr.ph.i.i.i.i216
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_235 Depth=2
                                         #       Parent Loop BB5_236 Depth=3
                                         # =>      This Inner Loop Header: Depth=4
-	movsbl	(%rax), %ebp
-	addl	(%rcx), %edi
+	movsbl	(%rcx), %ebp
+	addl	(%rsi), %edi
 	addl	(%rdx), %edi
 	addl	%ebp, %edi
 	movl	%edi, _ZL13render_output(%rip)
+	addq	$4, %rsi
 	addq	$4, %rdx
-	addq	$4, %rcx
-	incq	%rax
-	decq	%rsi
+	incq	%rcx
+	decq	%rax
 	jne	.LBB5_237
 .LBB5_238:                              # %_ZZ4mainENK3$_7clEv.exit.i.i
                                         #   in Loop: Header=BB5_236 Depth=3
@@ -1974,35 +1952,33 @@ main:                                   # @main
 	callq	_ZNSt6chrono3_V212system_clock3nowEv
 	subq	measure_start(%rip), %rax
 	cmpq	$200000000, %rax        # imm = 0xBEBC200
-	movq	%r12, %rbp
+	movq	%r15, %rbp
 	jl	.LBB5_236
 # BB#239:                               #   in Loop: Header=BB5_235 Depth=2
 	cvtsi2sdq	%rax, %xmm0
 	divsd	.LCPI5_0(%rip), %xmm0
 	cvtsi2sdl	%ebx, %xmm1
 	divsd	%xmm1, %xmm0
-	movq	144(%rsp), %rax         # 8-byte Reload
-	movsd	%xmm0, 200(%rsp,%rax,8)
-	incq	%rax
-	cmpq	$10, %rax
+	movsd	%xmm0, 216(%rsp,%r12,8)
+	incq	%r12
+	cmpq	$10, %r12
 	jne	.LBB5_235
 # BB#240:                               #   in Loop: Header=BB5_9 Depth=1
-	leaq	200(%rsp), %r8
-	movq	%r8, %r12
-	leaq	208(%rsp), %rbx
-	leaq	280(%rsp), %rsi
+	leaq	216(%rsp), %r15
+	movq	%r15, %r12
+	leaq	224(%rsp), %rbx
 	.align	16, 0x90
 .LBB5_241:                              # %.preheader
                                         #   Parent Loop BB5_9 Depth=1
                                         # =>  This Loop Header: Depth=2
-                                        #       Child Loop BB5_249 Depth 3
+                                        #       Child Loop BB5_252 Depth 3
 	movsd	(%rbx), %xmm1
-	movsd	200(%rsp), %xmm0
+	movsd	216(%rsp), %xmm0
 	ucomisd	%xmm1, %xmm0
-	jbe	.LBB5_248
+	jbe	.LBB5_251
 # BB#242:                               #   in Loop: Header=BB5_241 Depth=2
 	movq	%rbx, %rdx
-	subq	%r8, %rdx
+	subq	%r15, %rdx
 	movq	%rdx, %rax
 	sarq	$3, %rax
 	je	.LBB5_244
@@ -2010,25 +1986,23 @@ main:                                   # @main
 	movl	$2, %ecx
 	subq	%rax, %rcx
 	leaq	(%r12,%rcx,8), %rdi
-	movq	%r8, %rsi
-	movsd	%xmm1, 144(%rsp)        # 8-byte Spill
+	movq	%r15, %rsi
+	movsd	%xmm1, 152(%rsp)        # 8-byte Spill
 	callq	memmove
-	movsd	144(%rsp), %xmm1        # 8-byte Reload
-	leaq	200(%rsp), %r8
-	leaq	280(%rsp), %rsi
-.LBB5_244:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i228
+	movsd	152(%rsp), %xmm1        # 8-byte Reload
+.LBB5_244:                              # %_ZSt13move_backwardIPdS0_ET0_T_S2_S1_.exit.i5.i.i.i223
                                         #   in Loop: Header=BB5_241 Depth=2
-	movsd	%xmm1, 200(%rsp)
-	jmp	.LBB5_251
+	movsd	%xmm1, 216(%rsp)
+	jmp	.LBB5_245
 	.align	16, 0x90
-.LBB5_248:                              #   in Loop: Header=BB5_241 Depth=2
+.LBB5_251:                              #   in Loop: Header=BB5_241 Depth=2
 	movsd	(%r12), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movq	%rbx, %rax
 	movq	%r12, %rcx
-	jbe	.LBB5_250
+	jbe	.LBB5_253
 	.align	16, 0x90
-.LBB5_249:                              # %.lr.ph.i.i10.i.i.i233
+.LBB5_252:                              # %.lr.ph.i.i10.i.i.i228
                                         #   Parent Loop BB5_9 Depth=1
                                         #     Parent Loop BB5_241 Depth=2
                                         # =>    This Inner Loop Header: Depth=3
@@ -2039,55 +2013,57 @@ main:                                   # @main
 	ucomisd	%xmm1, %xmm0
 	movq	%rcx, %rax
 	movq	%rdx, %rcx
-	ja	.LBB5_249
-.LBB5_250:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i235
+	ja	.LBB5_252
+.LBB5_253:                              # %_ZSt25__unguarded_linear_insertIPdN9__gnu_cxx5__ops14_Val_less_iterEEvT_T0_.exit.i12.i.i.i230
                                         #   in Loop: Header=BB5_241 Depth=2
 	movsd	%xmm1, (%rax)
-.LBB5_251:                              # %.backedge.i7.i.i.i230
+.LBB5_245:                              # %.backedge.i7.i.i.i225
                                         #   in Loop: Header=BB5_241 Depth=2
 	movq	%r12, %rax
 	addq	$16, %rax
-	cmpq	%rsi, %rax
+	leaq	296(%rsp), %rcx
+	cmpq	%rcx, %rax
 	movq	%rbx, %r12
 	movq	%rax, %rbx
 	jne	.LBB5_241
-# BB#252:                               #   in Loop: Header=BB5_9 Depth=1
-	movsd	216(%rsp), %xmm0
+# BB#246:                               #   in Loop: Header=BB5_9 Depth=1
+	movsd	232(%rsp), %xmm0
 	addsd	.LCPI5_6, %xmm0
-	addsd	224(%rsp), %xmm0
-	addsd	232(%rsp), %xmm0
 	addsd	240(%rsp), %xmm0
 	addsd	248(%rsp), %xmm0
 	addsd	256(%rsp), %xmm0
+	addsd	264(%rsp), %xmm0
+	addsd	272(%rsp), %xmm0
 	divsd	.LCPI5_1(%rip), %xmm0
-	divsd	112(%rsp), %xmm0        # 16-byte Folded Reload
+	divsd	128(%rsp), %xmm0        # 16-byte Folded Reload
 	mulsd	.LCPI5_4(%rip), %xmm0
 .Ltmp62:
 	movl	$_ZSt4cout, %edi
+	movq	%r13, %r15
 	callq	_ZNSo9_M_insertIdEERSoT_
 	movq	%rax, %r12
 .Ltmp63:
-# BB#253:                               # %_ZNSolsEd.exit237
+# BB#247:                               # %_ZNSolsEd.exit232
                                         #   in Loop: Header=BB5_9 Depth=1
 	movq	(%r12), %rax
 	movq	-24(%rax), %rax
 	movq	240(%rax,%r12), %rbx
 	testq	%rbx, %rbx
-	je	.LBB5_254
-.LBB5_255:                              # %.noexc238
+	je	.LBB5_248
+.LBB5_249:                              # %.noexc238
                                         #   in Loop: Header=BB5_9 Depth=1
 	cmpb	$0, 56(%rbx)
-	je	.LBB5_257
-# BB#256:                               #   in Loop: Header=BB5_9 Depth=1
+	je	.LBB5_254
+# BB#250:                               #   in Loop: Header=BB5_9 Depth=1
 	movb	67(%rbx), %al
-	jmp	.LBB5_259
+	jmp	.LBB5_256
 	.align	16, 0x90
-.LBB5_257:                              #   in Loop: Header=BB5_9 Depth=1
+.LBB5_254:                              #   in Loop: Header=BB5_9 Depth=1
 .Ltmp64:
 	movq	%rbx, %rdi
 	callq	_ZNKSt5ctypeIcE13_M_widen_initEv
 .Ltmp65:
-# BB#258:                               # %.noexc241
+# BB#255:                               # %.noexc241
                                         #   in Loop: Header=BB5_9 Depth=1
 	movq	(%rbx), %rax
 	movq	48(%rax), %rax
@@ -2096,84 +2072,81 @@ main:                                   # @main
 	movq	%rbx, %rdi
 	callq	*%rax
 .Ltmp67:
-.LBB5_259:                              # %.noexc71
+.LBB5_256:                              # %.noexc234
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp68:
 	movsbl	%al, %esi
 	movq	%r12, %rdi
 	callq	_ZNSo3putEc
 .Ltmp69:
-# BB#260:                               # %.noexc72
+# BB#257:                               # %.noexc235
                                         #   in Loop: Header=BB5_9 Depth=1
 .Ltmp70:
 	movq	%rax, %rdi
 	callq	_ZNSo5flushEv
 .Ltmp71:
-# BB#261:                               # %_ZNSolsEPFRSoS_E.exit
+# BB#258:                               # %_ZNSolsEPFRSoS_E.exit
                                         #   in Loop: Header=BB5_9 Depth=1
-	movq	176(%rsp), %rdi
+	movq	192(%rsp), %rdi
 	testq	%rdi, %rdi
-	je	.LBB5_263
-# BB#262:                               #   in Loop: Header=BB5_9 Depth=1
+	je	.LBB5_260
+# BB#259:                               #   in Loop: Header=BB5_9 Depth=1
 	callq	_ZdlPv
-.LBB5_263:                              # %_ZNSt6vectorI14plain_particleSaIS0_EED2Ev.exit69
+.LBB5_260:                              # %_ZNSt6vectorI14plain_particleSaIS0_EED2Ev.exit69
                                         #   in Loop: Header=BB5_9 Depth=1
-	movq	136(%rsp), %rdi         # 8-byte Reload
+	movq	24(%rsp), %rdi          # 8-byte Reload
 	testq	%rdi, %rdi
-	je	.LBB5_265
-# BB#264:                               #   in Loop: Header=BB5_9 Depth=1
+	movq	160(%rsp), %r12         # 8-byte Reload
+	movq	32(%rsp), %rbx          # 8-byte Reload
+	je	.LBB5_262
+# BB#261:                               #   in Loop: Header=BB5_9 Depth=1
 	callq	_ZdlPv
-.LBB5_265:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit68
+.LBB5_262:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit68
                                         #   in Loop: Header=BB5_9 Depth=1
-	movq	16(%rsp), %rdi          # 8-byte Reload
-	testq	%rdi, %rdi
-	je	.LBB5_267
-# BB#266:                               #   in Loop: Header=BB5_9 Depth=1
+	testq	%rbx, %rbx
+	je	.LBB5_264
+# BB#263:                               #   in Loop: Header=BB5_9 Depth=1
+	movq	%rbx, %rdi
 	callq	_ZdlPv
-.LBB5_267:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit67
+.LBB5_264:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit67
                                         #   in Loop: Header=BB5_9 Depth=1
-	testq	%r13, %r13
-	je	.LBB5_269
-# BB#268:                               #   in Loop: Header=BB5_9 Depth=1
-	movq	%r13, %rdi
+	testq	%r12, %r12
+	je	.LBB5_266
+# BB#265:                               #   in Loop: Header=BB5_9 Depth=1
+	movq	%r12, %rdi
 	callq	_ZdlPv
-.LBB5_269:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit66
+.LBB5_266:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit66
                                         #   in Loop: Header=BB5_9 Depth=1
 	testq	%r15, %r15
-	je	.LBB5_271
-# BB#270:                               #   in Loop: Header=BB5_9 Depth=1
+	je	.LBB5_268
+# BB#267:                               #   in Loop: Header=BB5_9 Depth=1
 	movq	%r15, %rdi
 	callq	_ZdlPv
-.LBB5_271:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit65
+.LBB5_268:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit65
                                         #   in Loop: Header=BB5_9 Depth=1
 	testq	%rbp, %rbp
-	je	.LBB5_273
-# BB#272:                               #   in Loop: Header=BB5_9 Depth=1
+	je	.LBB5_270
+# BB#269:                               #   in Loop: Header=BB5_9 Depth=1
 	movq	%rbp, %rdi
 	callq	_ZdlPv
-.LBB5_273:                              # %_ZNSt6vectorIcSaIcEED2Ev.exit64
+.LBB5_270:                              # %_ZNSt6vectorIcSaIcEED2Ev.exit64
                                         #   in Loop: Header=BB5_9 Depth=1
 	addq	%r14, %r14
 	leaq	(%r14,%r14,4), %r14
 	cmpq	$10000001, %r14         # imm = 0x989681
-	leaq	200(%rsp), %rdi
-	movq	%rdi, %r9
 	jb	.LBB5_9
-	jmp	.LBB5_274
-.LBB5_254:                              #   in Loop: Header=BB5_9 Depth=1
+	jmp	.LBB5_271
+.LBB5_248:                              #   in Loop: Header=BB5_9 Depth=1
 .Ltmp73:
-	movq	16(%rsp), %rbx          # 8-byte Reload
 	callq	_ZSt16__throw_bad_castv
 .Ltmp74:
-	jmp	.LBB5_255
-.LBB5_100:                              # %.nonloopexit.nonloopexit
+	jmp	.LBB5_249
+.LBB5_96:                               # %.nonloopexit.nonloopexit
 .Ltmp75:
-	movq	%rbp, %r14
-	movq	%rax, %rbp
-	jmp	.LBB5_101
-.LBB5_274:
+	jmp	.LBB5_97
+.LBB5_271:
 	xorl	%eax, %eax
-	addq	$280, %rsp              # imm = 0x118
+	addq	$296, %rsp              # imm = 0x128
 	popq	%rbx
 	popq	%r12
 	popq	%r13
@@ -2181,55 +2154,54 @@ main:                                   # @main
 	popq	%r15
 	popq	%rbp
 	retq
-.LBB5_97:                               # %.loopexit
+.LBB5_94:                               # %.loopexit
 .Ltmp25:
-	jmp	.LBB5_98
-.LBB5_99:                               # %.nonloopexit.loopexit
+	jmp	.LBB5_97
+.LBB5_95:                               # %.nonloopexit.loopexit
 .Ltmp72:
-.LBB5_98:                               # %.nonloopexit
+.LBB5_97:                               # %.nonloopexit
 	movq	%rbp, %r14
 	movq	%rax, %rbp
-	movq	16(%rsp), %rbx          # 8-byte Reload
-.LBB5_101:                              # %.nonloopexit
-	movq	176(%rsp), %rdi
+	movq	160(%rsp), %rbx         # 8-byte Reload
+	movq	192(%rsp), %rdi
+	testq	%rdi, %rdi
+	je	.LBB5_99
+# BB#98:
+	callq	_ZdlPv
+.LBB5_99:                               # %_ZNSt6vectorI14plain_particleSaIS0_EED2Ev.exit
+	movq	24(%rsp), %rdi          # 8-byte Reload
+	testq	%rdi, %rdi
+	je	.LBB5_101
+# BB#100:
+	callq	_ZdlPv
+.LBB5_101:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit
+	movq	32(%rsp), %rdi          # 8-byte Reload
 	testq	%rdi, %rdi
 	je	.LBB5_103
 # BB#102:
 	callq	_ZdlPv
-.LBB5_103:                              # %_ZNSt6vectorI14plain_particleSaIS0_EED2Ev.exit
-	movq	136(%rsp), %rdi         # 8-byte Reload
-	testq	%rdi, %rdi
+.LBB5_103:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit60
+	testq	%rbx, %rbx
 	je	.LBB5_105
 # BB#104:
-	callq	_ZdlPv
-.LBB5_105:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit
-	testq	%rbx, %rbx
-	je	.LBB5_107
-# BB#106:
 	movq	%rbx, %rdi
 	callq	_ZdlPv
-.LBB5_107:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit60
-	testq	%r13, %r13
-	je	.LBB5_109
-# BB#108:
-	movq	%r13, %rdi
-	callq	_ZdlPv
-.LBB5_109:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit61
+.LBB5_105:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit61
 	testq	%r15, %r15
-	je	.LBB5_111
-# BB#110:
+	je	.LBB5_107
+# BB#106:
 	movq	%r15, %rdi
 	callq	_ZdlPv
-.LBB5_111:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit62
+.LBB5_107:                              # %_ZNSt6vectorIiSaIiEED2Ev.exit62
 	movq	%r14, %rdi
 	testq	%rdi, %rdi
-	je	.LBB5_113
-# BB#112:
+	je	.LBB5_109
+# BB#108:
 	callq	_ZdlPv
-.LBB5_113:                              # %_ZNSt6vectorIcSaIcEED2Ev.exit
+.LBB5_109:                              # %_ZNSt6vectorIcSaIcEED2Ev.exit
 	movq	%rbp, %rdi
 	callq	_Unwind_Resume
-.LBB5_275:
+.LBB5_272:
 	callq	_ZSt16__throw_bad_castv
 .Ltmp89:
 	.size	main, .Ltmp89-main
@@ -2513,8 +2485,8 @@ _ZNSt6vectorI14plain_particleSaIS0_EE19_M_emplace_back_auxIJS0_EEEvDpOT_: # @_ZN
 
 	.section	.text.startup,"ax",@progbits
 	.align	16, 0x90
-	.type	_GLOBAL__sub_I_dod_perf.cpp,@function
-_GLOBAL__sub_I_dod_perf.cpp:            # @_GLOBAL__sub_I_dod_perf.cpp
+	.type	_GLOBAL__sub_I_dod_perfv2.cpp,@function
+_GLOBAL__sub_I_dod_perfv2.cpp:          # @_GLOBAL__sub_I_dod_perfv2.cpp
 	.cfi_startproc
 # BB#0:
 	pushq	%rax
@@ -2528,7 +2500,7 @@ _GLOBAL__sub_I_dod_perf.cpp:            # @_GLOBAL__sub_I_dod_perf.cpp
 	popq	%rax
 	jmp	__cxa_atexit            # TAILCALL
 .Ltmp105:
-	.size	_GLOBAL__sub_I_dod_perf.cpp, .Ltmp105-_GLOBAL__sub_I_dod_perf.cpp
+	.size	_GLOBAL__sub_I_dod_perfv2.cpp, .Ltmp105-_GLOBAL__sub_I_dod_perfv2.cpp
 	.cfi_endproc
 
 	.type	measure_start,@object   # @measure_start
@@ -2575,7 +2547,7 @@ measure_pause:
 
 	.section	.init_array,"aw",@init_array
 	.align	8
-	.quad	_GLOBAL__sub_I_dod_perf.cpp
+	.quad	_GLOBAL__sub_I_dod_perfv2.cpp
 
 	.ident	"clang version 3.6.2 (tags/RELEASE_362/final)"
 	.section	".note.GNU-stack","",@progbits
