@@ -3,7 +3,7 @@ project(joaquin_dod)
 
 include(cmake/utils.cmake)
 
-option(GENERATE_ASSEMBLY "Generate assembly listings instead of executable" OFF)
+option(GENERATE_ASSEMBLY "Generate assembly listings" OFF)
 if(NOT CPU_MODEL)
     message(FATAL_ERROR "You must specify your CPU model. We are still working on a portable command to handle this automatically. Thanks!")
 endif()
@@ -25,6 +25,7 @@ if(NOT (EXISTS OUTPUT_PATH))
 endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH})
 
+# Include user-defined test sources
 include(sources.cmake)
 
 foreach(name ${SOURCE_NAMES})
@@ -54,34 +55,23 @@ foreach(name ${SOURCE_NAMES})
     endif()
 
     # Compiler flags
-    if(MSVC)
-        # SSE2 flag ignored in 64 bit builds, it's enabled by default.
-        # See http://stackoverflow.com/questions/1067630/sse2-option-in-visual-c-x64
-        set(SIMD_FLAGS $<$<CONFIG:Release>:/arch:sse2>)
+    include(compiler_flags.cmake)
 
-        # Omit frame pointer, enable intrinsic functions
-        set(OPT_FLAGS $<$<CONFIG:Release>:/Oy /Oi>)
-
-        if(GENERATE_ASSEMBLY)
-            set(ASMGEN_FLAGS "/Fa${OUTPUT_PATH}/${ASSEMBLY_LISTING_FILE}" /FA)
-        endif()
-    else()
-        set(STD_FLAGS -std=c++11)
-        set(SIMD_FLAGS $<$<CONFIG:Release>:-ftree-vectorize -msse2>)
-        set(OPT_FLAGS $<$<CONFIG:Release>:-O3 -g0 -fomit-frame-pointer>) # Frame pointer out not bcos performance but to clear listings a bit
-
-        if(GENERATE_ASSEMBLY)
-            add_custom_command(TARGET ${target}
-                               POST_BUILD
-                               COMMAND make ARGS ${name}.s
-                               COMMAND ${CMAKE_COMMAND} -E copy
-                                   "${CMAKE_BINARY_DIR}/CMakeFiles/${target}.dir/${name}.cpp.s"
-                                   "${OUTPUT_PATH}/${ASSEMBLY_LISTING_FILE}"
-                               WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
-        endif()
+    if(GENERATE_ASSEMBLY)
+      if(MSVC)
+          set(ASMGEN_FLAGS "/Fa${OUTPUT_PATH}/${ASSEMBLY_LISTING_FILE}" /FA)
+      else()
+          add_custom_command(TARGET ${target}
+                             POST_BUILD
+                             COMMAND make ARGS ${name}.s
+                             COMMAND ${CMAKE_COMMAND} -E copy
+                                 "${CMAKE_BINARY_DIR}/CMakeFiles/${target}.dir/${name}.cpp.s"
+                                 "${OUTPUT_PATH}/${ASSEMBLY_LISTING_FILE}"
+                             WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+      endif()
     endif()
 
-    target_compile_options(${target} PRIVATE ${STD_FLAGS} ${OPT_FLAGS} ${SIMD_FLAGS} ${ASMGEN_FLAGS})
+    target_compile_options(${target} PRIVATE ${STD_FLAGS} ${OPT_FLAGS} ${DEBUG_FLAGS} ${SIMD_FLAGS} ${USER_FLAGS} ${ASMGEN_FLAGS})
 
     # External dependencies (Boost, etc)
     if(WIN32)
@@ -126,8 +116,12 @@ foreach(name ${SOURCE_NAMES})
     set(RUN_TARGETS "${RUN_TARGETS} ${RUN_TARGET}")
 endforeach()
 
+# Include user-defined variants 
 include(variants.cmake)
 
+# Both the run_all and build_all share almost the same setup, except the run step.
+# This function generates those targets: When RUN is set to false it generates a build target,
+# when is set to true generates a run target. See invocations bellow.
 function(generate_all_targets TARGET_NAME RUN)
     if(RUN)
         set(action Running)
@@ -143,11 +137,14 @@ function(generate_all_targets TARGET_NAME RUN)
 
     foreach(i RANGE ${end})
         list(GET VARIANTS ${i} variant)
+
+        # Add the common flags to the variant invocation
+        set(variant "${variant} ${COMMON_VARIANT_FLAGS}")
+
         if(UNIX)
           # See http://www.cmake.org/pipermail/cmake/2009-October/032380.html
           string(REGEX REPLACE " " ";" variant "${variant}")
         endif()
-        string(REGEX REPLACE " " "-" variant_label "${variant}")
 
         message(STATUS "Setting up command for \"${variant}\" variant...")
         message("   (Common variant flags: \"${COMMON_VARIANT_FLAGS}\")")        
@@ -160,7 +157,7 @@ function(generate_all_targets TARGET_NAME RUN)
 
         add_custom_command(TARGET ${TARGET_NAME}
                            COMMAND ${CMAKE_COMMAND} -E echo "Building variant: '${variant}'"
-                           COMMAND ${CMAKE_COMMAND} ../.. ${variant} ${COMMON_VARIANT_FLAGS}
+                           COMMAND ${CMAKE_COMMAND} ../.. ${variant}
                            COMMAND ${CMAKE_COMMAND} --build .
                            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/${i})
 
@@ -183,6 +180,9 @@ endfunction()
 
 generate_all_targets(run_all TRUE)
 generate_all_targets(build_all FALSE)
+
+
+# Print information about the current setup
 
 string(REPLACE ";" " " SOURCE_FILES_STR "${SOURCE_FILES}")
 string(REPLACE ";" " " ASSEMBLY_LISTING_FILES_STR "${ASSEMBLY_LISTING_FILES}")

@@ -24,11 +24,27 @@ Manu @ joaquin_dod/build $ cmake --build .
 
 The `CPU_MODEL` option is mandatory, CPU model information is used for results organization. Also note build type can be passed as configure option with `CMAKE_BUILD_TYPE` variable (Release by default).
 
-*To ensure timings are run using the correct build configuration, a workaround to the multi-configuration setup of Visual Studio generator was done. By default VS generator ignores `CMAKE_BUILD_TYPE` variable, the config is selected at build time through the IDE or by passing a `--config` option to the cmake build command. This makes impossible to know what build type will be used at cmake configuration time. Instead, the workaround wraps the build call by passing the value held by `CMAKE_BUILD_TYPE`. This way we can safely do configuration based on build type, and the code is configured and run in the same way regardless its using a VS generator or a makefiles generator (i.e. always passing build type through `CMAKE_BUILD_TYPE` variable at configure call).*
+*To ensure timings are run using the correct build configuration, a workaround to the multi-configuration setup of Visual Studio generator was done. By default VS generator ignores `CMAKE_BUILD_TYPE` variable, the config is selected at build time through the IDE or by passing a `--config` option to the cmake build command. This makes impossible to know what build type will be used at cmake configuration time. Instead, the workaround wraps the build call by passing the value held by `CMAKE_BUILD_TYPE`. This way we can safely do configuration based on build type, also the code is configured and run in the same way regardless its using a VS generator or a makefiles generator (i.e. always passing build type through `CMAKE_BUILD_TYPE` variable at configure call).*
+
+Compiler flags can be specified in the `compiler_clags.cmake` file, using the following variables:
+
+ - `STD_FLAGS`: C++ version and stdlib related flags.
+ - `OPT_FLAGS`: Optimization flags.
+ - `DEBUG_FLAGS`: Flags to control debug settings.
+ - `SIMD_FLAGS`: SIMD related flags.
+ - `USER_FLAGS`: Extra user defined flags.
+
+The classification of different compiler flags into that variables is not mandatory, actually those flags are passed by the following `target_compile_options()` call:
+
+``` cmake
+target_compile_options(${target} PRIVATE ${STD_FLAGS} ${OPT_FLAGS} ${DEBUG_FLAGS} ${SIMD_FLAGS} ${USER_FLAGS})
+``` 
+
+So you can simply pass the flags you want through the `USER_FLAGS` variable for example.
 
 ### Assembly listings
 
-The cmake script includes a `GENERATE_ASSEMBLY` option that, in addition to building the example, generates an assembly listing file using the same build settigns. Just enable it when invoking cmake:
+The cmake script includes a `GENERATE_ASSEMBLY` option that, in addition to building the example, generates an assembly listing file using the same build settings. Just enable it when invoking cmake:
 
 ``` bash
 Manu : joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="..." ...
