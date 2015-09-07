@@ -17,9 +17,9 @@ set(SOURCE_NAMES dod_perfv1 dod_perfv2)
 Create a `build/` directory for out-of-source build, then run cmake configure and build steps:
 
 ``` bash
-Manu @ joaquin_dod $ mkdir build && cd build
-Manu @ joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DCPU_MODEL="My CPU" -DCMAKE_BUILD_TYPE=Release
-Manu @ joaquin_dod/build $ cmake --build .
+Manu @ cpp_dod_tests $ mkdir build && cd build
+Manu @ cpp_dod_tests/build $ cmake .. -G "Visual Studio 14" -DCPU_MODEL="My CPU" -DCMAKE_BUILD_TYPE=Release
+Manu @ cpp_dod_tests/build $ cmake --build .
 ```
 
 The `CPU_MODEL` option is mandatory, CPU model information is used for results organization. Also note build type can be passed as configure option with `CMAKE_BUILD_TYPE` variable (Release by default).
@@ -47,7 +47,7 @@ So you can simply pass the flags you want through the `USER_FLAGS` variable for 
 The cmake script includes a `GENERATE_ASSEMBLY` option that, in addition to building the example, generates an assembly listing file using the same build settings. Just enable it when invoking cmake:
 
 ``` bash
-Manu : joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="..." ...
+Manu : cpp_dod_tests/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="..." ...
 ```
 
 ### Run and log timings to a file
@@ -55,19 +55,19 @@ Manu : joaquin_dod/build $ cmake .. -G "Visual Studio 14" -DGENERATE_ASSEMBLY=ON
 A set of custom targets named `run_[TARGET_NAME]` was added to run and store timings in an easy way. Results are written to a `output_[TARGET_NAME].txt` file in the results directory:
 
 ``` bash
-Manu @ joaquin_dod/build $ cmake --build . --target run_dod_perfv1 # Or "make run_dod_perfv1" when using makefiles generator
+Manu @ cpp_dod_tests/build $ cmake --build . --target run_dod_perfv1 # Or "make run_dod_perfv1" when using makefiles generator
 ```
 
 Finally a `run_all` target is provided to configure and run a set of specific variants (Visual Studio generator vs Unix Makefiles for MinGW GCC, Debug vs Release, etc) defined as a `VARIANTS` cmake list in the `variants.cmake` file. This makes running tests in multiple machines pretty straightforward:
 
 ``` bash
-Manu @ joaquin_dod/build $ cmake .. -G "Unix Makefiles" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="My CPU"
-Manu @ joaquin_dod/build $ make run_all
+Manu @ cpp_dod_tests/build $ cmake .. -G "Unix Makefiles" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="My CPU"
+Manu @ cpp_dod_tests/build $ make run_all
 ```
 
 *Also there's a `build_all` target which does the same but without running the tests, only building them on all variants:*
 
 ``` bash
-Manu @ joaquin_dod/build $ cmake .. -G "Unix Makefiles" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="My CPU"
-Manu @ joaquin_dod/build $ make build_all
+Manu @ cpp_dod_tests/build $ cmake .. -G "Unix Makefiles" -DGENERATE_ASSEMBLY=ON -DCPU_MODEL="My CPU"
+Manu @ cpp_dod_tests/build $ make build_all
 ```
